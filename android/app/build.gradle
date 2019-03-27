@@ -140,7 +140,6 @@ dependencies {
     compile project(':react-native-svg')
     compile project(':react-native-vector-icons')
     compile project(':react-native-linear-gradient')
-    compile project(':react-native-auth0')
     compile project(':react-native-exit-app')
     compile project(':react-native-secure-key-store')
     compile project(':react-native-gesture-handler')

@@ -16,8 +16,9 @@ target 'serviceApp' do
     'RCTActionSheet',
     'RCTAnimation',
     'RCTBlob',
+    #'RCTCameraRoll',
     'RCTGeolocation',
-    'RCTImage',
+    #'RCTImage',
     'RCTNetwork',
     'RCTPushNotification',
     'RCTSettings',
@@ -27,5 +28,8 @@ target 'serviceApp' do
     'RCTWebSocket',
     'RCTLinkingIOS'
   ]
+
+  # Mapbox
+  #pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
 
 end
