@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "serviceApp.app"
-               BlueprintName = "serviceApp"
-               ReferencedContainer = "container:serviceApp.xcodeproj">
+               BuildableName = "roamiApp.app"
+               BlueprintName = "roamiApp"
+               ReferencedContainer = "container:roamiApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "serviceApp.app"
-            BlueprintName = "serviceApp"
-            ReferencedContainer = "container:serviceApp.xcodeproj">
+            BuildableName = "roamiApp.app"
+            BlueprintName = "roamiApp"
+            ReferencedContainer = "container:roamiApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "serviceApp.app"
-            BlueprintName = "serviceApp"
-            ReferencedContainer = "container:serviceApp.xcodeproj">
+            BuildableName = "roamiApp.app"
+            BlueprintName = "roamiApp"
+            ReferencedContainer = "container:roamiApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -89,9 +89,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "serviceApp.app"
-            BlueprintName = "serviceApp"
-            ReferencedContainer = "container:serviceApp.xcodeproj">
+            BuildableName = "roamiApp.app"
+            BlueprintName = "roamiApp"
+            ReferencedContainer = "container:roamiApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
