@@ -1,3 +1,4 @@
 export default { 
-    API_URL: 'https://core.staging.gourban.eu'
+    //API_URL: 'http://192.168.0.36:8000/api'
+    API_URL: 'http://10.20.30.242:8000/api'
 }

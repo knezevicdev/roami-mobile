@@ -7,14 +7,13 @@ class Api {
         baseURL: api.API_URL
     });
 
-    static request = async (method, url, data = {}, headers = {}) => {
-        const token = await getAccessToken();
-        const requestHeaders = {
+    static request = async (method, url, data = {}, headers = {}, token = true) => {
+        let requestHeaders = {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-            ...headers
+            //Authorization: `Bearer ${token}`
         };
-
+        console.log(data, method, url, requestHeaders)
+        
         return await this.axios({
             method,
             url,
@@ -27,8 +26,8 @@ class Api {
         return this.request('GET', url);
     };
 
-    static post = (url, data = {}) => {
-        return this.request('POST', url, data);
+    static post = (url, data = {}, token = true) => {
+        return this.request('POST', url, data, token);
     };
 
     static patch = (url, data) => {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
 import { Button } from '../../components';
-import { storeAccessToken, Login } from '../../lib/auth';
+import { storeAccessToken } from '../../lib/auth';
+import { LoginApi } from '../../lib/api';
 import { colors } from '../../config';
 import styles from "./styles";
 
@@ -13,10 +14,12 @@ export default class LoginComponent extends Component {
 
     login = async () => {
         try {
-            const response = await Login(this.state.email, this.state.password);
-
-            await storeAccessToken(response.data.token);
-            await this.props.navigation.navigate("Main");
+            LoginApi.loginRequest(this.state.email, this.state.password).then(response => {
+                storeAccessToken(response.data.token);
+                this.props.navigation.navigate("Main");
+            }).catch(error => {
+                console.log(error)
+            });
         } catch (error) {
             console.log(error);
         }
@@ -44,7 +47,7 @@ export default class LoginComponent extends Component {
                     <TextInput
                         onChangeText={password => this.setState({ password })}
                         value={this.state.password}
-                        placeholder="Input password"
+                        placeholder="Input passwords"
                         placeholderTextColor="white"
                         secureTextEntry={true}
                     />
