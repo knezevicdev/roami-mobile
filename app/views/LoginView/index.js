@@ -8,15 +8,15 @@ import styles from "./styles";
 
 export default class LoginComponent extends Component {
     state = {
-        email: "",
-        password: ""
+        email: "test",
+        password: "test"
     };
 
     login = async () => {
         try {
             LoginApi.loginRequest(this.state.email, this.state.password).then(response => {
                 storeAccessToken(response.data.token);
-                this.props.navigation.navigate("Main");
+                this.props.navigation.navigate("Home");
             }).catch(error => {
                 console.log(error)
             });
