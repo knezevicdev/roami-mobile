@@ -7,12 +7,20 @@ class Api {
         baseURL: api.API_URL
     });
 
-    static request = async (method, url, data = {}, headers = {}, token = true) => {
+    static request = async (method, url, data = {}, token = true, headers = {}) => {
         let requestHeaders = {
-            'Content-Type': 'application/json',
-            //Authorization: `Bearer ${token}`
+            'Content-Type': 'application/json'
         };
-        console.log(data, method, url, requestHeaders)
+
+        if(token){
+            const token = await getAccessToken();
+            requestHeaders = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+                ...headers
+            };
+
+        }
         
         return await this.axios({
             method,
