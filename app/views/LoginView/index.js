@@ -8,8 +8,8 @@ import styles from "./styles";
 
 export default class LoginComponent extends Component {
     state = {
-        email: "test",
-        password: "test"
+        email: "test@mail.si",
+        password: "testeri"
     };
 
     login = async () => {

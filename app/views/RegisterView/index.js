@@ -5,7 +5,7 @@ import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
 
-export default class LoginComponent extends Component {
+export default class RegisterComponent extends Component {
     state = {
         first_name: "Test",
         last_name: "Test",
