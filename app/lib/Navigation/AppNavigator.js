@@ -4,6 +4,7 @@ import SplashView from '../../views/SplashView';
 import LoginView from '../../views/LoginView';
 import HomeView from '../../views/HomeView';
 import RegisterView from '../../views/RegisterView';
+import ResetView from '../../views/ResetView';
 import { Drawer } from '../../components'
 
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
@@ -26,10 +27,11 @@ const AppNavigator = createSwitchNavigator({
     Splash: { screen: SplashView },
     Login: { screen: LoginView },
     Drawer: { screen: DrawerNavigator },
-    Register: { screen: RegisterView }
+    Register: { screen: RegisterView },
+    Reset: { screen: ResetView }
 });
 
-const outerScreens = ['Splash', 'Login', 'Home', 'Register'];
+const outerScreens = ['Splash', 'Login', 'Home', 'Register', 'Reset'];
 
 const middleware = createReactNavigationReduxMiddleware(
     'root',
