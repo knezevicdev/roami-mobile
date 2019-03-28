@@ -5,8 +5,8 @@ class VenueApi extends Api {
         return await this.get('/venue');
     };
 
-    static venueRequest = async () => {
-        return await this.get(`/venue/3`);
+    static venueRequest = async (id) => {
+        return await this.get(`/venue/${id}`);
     }
 }
 
