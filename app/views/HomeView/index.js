@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { PermissionsAndroid, Platform, View } from "react-native";
+import { PermissionsAndroid, Platform, View, Text } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Header } from "../../components";
+import { VenueApi } from '../../lib/api';
 import Geolocation from "react-native-geolocation-service";
 import TopBar from './components/TopBar';
 import styles from "./styles";
@@ -10,7 +11,8 @@ export default class MainComponent extends Component {
     state = {
         longitude: 0,
         latitude: 0,
-        loadedCoords: false
+        loadedCoords: false,
+        venue: ''
     };
 
     async componentDidMount() {
@@ -75,6 +77,9 @@ export default class MainComponent extends Component {
                             )}
                         </>
                     )}
+                    <View venue="V" style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
+                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 3} )}>Press me</Text>
+                    </View>
                 </View>
             </SafeAreaView>
         );

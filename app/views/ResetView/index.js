@@ -5,7 +5,7 @@ import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
 
-export default class LoginComponent extends Component {
+export default class ResetComponent extends Component {
     state = {
         email: 'test@mail.com',
         reseted: false,
