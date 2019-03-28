@@ -20,6 +20,14 @@ class UserApi extends Api {
             false
         );
     };
+
+    static resetRequest = async (email) => {
+        return this.post('/forgot-password', {
+                email
+            }, 
+            false
+        );
+    };
 }
 
 export default UserApi;

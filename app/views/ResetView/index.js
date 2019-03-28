@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
 import { Button } from '../../components';
-import { storeAccessToken } from '../../lib/auth';
-import { UserApi } from '../../lib/api';
 import { colors } from '../../config';
+import { UserApi } from '../../lib/api';
 import styles from "./styles";
 
 export default class LoginComponent extends Component {
     state = {
-        email: "test",
-        password: "test"
+        email: 'test@mail.com',
+        reseted: false,
+        resetMsg: 'Email with instructions is sent to your email.'
     };
 
-    login = async () => {
-        try {
-            UserApi.loginRequest(this.state.email, this.state.password).then(response => {
-                storeAccessToken(response.data.token);
-                this.props.navigation.navigate("Home");
-            }).catch(error => {
-                console.log(error)
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    registration = () => {
-        this.props.navigation.navigate("Register");
+    reset = async () => {
+        await UserApi.resetRequest(this.state.email)
+            .then((res) => {
+                if(res.status === 200) {
+                    this.setState({
+                        reseted: true,
+                    });
+                    setTimeout(() => {
+                        this.props.navigation.navigate("Login");
+                    }, 2000)
+                } else {
+                    this.setState({
+                        reseted: false
+                    });
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
-    toReset = () => {
-        this.props.navigation.navigate("Reset");
+    toLogin = () => {
+        this.props.navigation.navigate("Login");
     }
 
     render() {
@@ -45,35 +49,31 @@ export default class LoginComponent extends Component {
                         source={require('../../../assets/images/logo/goUrbanMobilityWhiteLogo.png')} 
                     />
                 </View>
-                <View style={{ flex: 1, marginBottom: 40 }}>
+                <View style={{ flex: 1, marginBottom: 40, paddingBottom: 120 }}>
+                    {
+                        this.state.reseted ? 
+                            <View>
+                                <Text style={styles.text}>{this.state.resetMsg}</Text>
+                            </View> : 
+                        null
+                    }
                     <TextInput
                         onChangeText={email => this.setState({ email })}
                         value={this.state.email}
-                        placeholder="Input email"
+                        placeholder="Enter email"
                         placeholderTextColor="white"
-                        style={styles.input}
-                    />
-                    <TextInput
-                        onChangeText={password => this.setState({ password })}
-                        value={this.state.password}
-                        placeholder="Input passwords"
-                        placeholderTextColor="white"
-                        secureTextEntry={true}
                         style={styles.input}
                     />
                     <Button
                         containerStyles={styles.button}
                         textStyles={{ color: colors.WHITE }}
-                        title={'Login'} onPress={() => this.login()} 
+                        title={'Reset email'} onPress={() => this.reset()} 
                     />
                     <Button
                         containerStyles={styles.button}
                         textStyles={{ color: colors.WHITE }}
-                        title={'Register'} onPress={() => this.registration()} 
+                        title={'Return to login'} onPress={() => this.toLogin()} 
                     />
-                    <View style={styles.reset}>
-                        <Text onPress={() => this.toReset()} style={styles.text}>Reset password</Text>
-                    </View>
                 </View>
             </ImageBackground>
         );
