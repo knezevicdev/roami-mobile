@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
 import { Button } from '../../components';
 import { colors } from '../../config';
-import { RegisterApi } from '../../lib/api';
+import { UserApi } from '../../lib/api';
 import styles from "./styles";
 
 export default class LoginComponent extends Component {
@@ -18,7 +18,7 @@ export default class LoginComponent extends Component {
     register = async () => {
         const { first_name, last_name, email, password } = this.state;
         
-        await RegisterApi.registerRequest(first_name, last_name, email, password)
+        await UserApi.registerRequest(first_name, last_name, email, password)
             .then((res) => {
                 if(res.status === 200) {
                     this.setState({

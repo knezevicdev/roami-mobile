@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
 import { Button } from '../../components';
 import { storeAccessToken } from '../../lib/auth';
-import { LoginApi } from '../../lib/api';
+import { UserApi } from '../../lib/api';
 import { colors } from '../../config';
 import styles from "./styles";
 
@@ -14,7 +14,7 @@ export default class LoginComponent extends Component {
 
     login = async () => {
         try {
-            LoginApi.loginRequest(this.state.email, this.state.password).then(response => {
+            UserApi.loginRequest(this.state.email, this.state.password).then(response => {
                 storeAccessToken(response.data.token);
                 this.props.navigation.navigate("Home");
             }).catch(error => {
@@ -25,7 +25,7 @@ export default class LoginComponent extends Component {
         }
     };
 
-    toRegister = () => {
+    registration = () => {
         this.props.navigation.navigate("Register");
     }
 
@@ -65,7 +65,7 @@ export default class LoginComponent extends Component {
                     <Button
                         containerStyles={styles.button}
                         textStyles={{ color: colors.WHITE }}
-                        title={'Register'} onPress={() => this.toRegister()} 
+                        title={'Register'} onPress={() => this.registration()} 
                     />
                     <View style={styles.reset}>
                         <Text style={styles.text}>Reset password</Text>
