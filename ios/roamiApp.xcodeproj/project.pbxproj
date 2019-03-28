@@ -14,9 +14,6 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		041400BA25F84B9DACCA96E0 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B182BBF29BEE459CAFCAB1CE /* Feather.ttf */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		12D3FFEA2205BE12006DB7C4 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D3FFB92205BE12006DB7C4 /* Mapbox.framework */; };
-		12D3FFEB2205BE12006DB7C4 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12D3FFB92205BE12006DB7C4 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		12D3FFF32205BF85006DB7C4 /* libRCTMGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D3FFF22205BF4A006DB7C4 /* libRCTMGL.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -32,7 +29,6 @@
 		5C5C3FE09C8A4397B1042C32 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D31A41A60B064E809DA3DF50 /* Octicons.ttf */; };
 		5F22F6BCC3B44DD08F76D8CB /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D64BD532F26A471A8663140B /* MaterialCommunityIcons.ttf */; };
 		6B812D4F66AC47078D1E5856 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEB95A4D49A4A488C554AC9 /* libRNGestureHandler.a */; };
-		73C30BC352AD45ECB59D8E44 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD690A4AD68C4A49A3312476 /* libRNCamera.a */; };
 		796CE9091BBC42BCA05AD70D /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24601D975EA14EF3B4BFF39B /* SimpleLineIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		85468B6E7BFD4ECABBD9B08C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B012DF8D85A42958C6F16AC /* EvilIcons.ttf */; };
@@ -42,7 +38,6 @@
 		9FDE79FC155F493E80F1BB8D /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA14CF4E69734E6BA3C11952 /* FontAwesome5_Brands.ttf */; };
 		A5A3E412DCA4460290230170 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 037702D1D5494050922CAF01 /* FontAwesome5_Regular.ttf */; };
 		A72F6F71F5824904BF25F30A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D725D4F424144038C8D3EB6 /* Ionicons.ttf */; };
-		ABDE891E82504E0D9ABC66A2 /* libA0Auth0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 092C4EF1486546B280C5BBDE /* libA0Auth0.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BBDF0417107849549FB7835C /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50D34EAE6D024E0593BBA7CC /* FontAwesome5_Solid.ttf */; };
 		C233D64C6BB549F3B7F953B1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47205EF773A043B8A73316C4 /* Zocial.ttf */; };
@@ -89,6 +84,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
+		};
+		12791E36224CD1AE00C5705E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E07F7F31D6E6446D8B5FFE5A /* RNGestureHandler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
+			remoteInfo = "RNGestureHandler-tvOS";
 		};
 		12D3FFF12205BF4A006DB7C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -407,7 +409,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				12D3FFEB2205BE12006DB7C4 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,7 +425,6 @@
 		037702D1D5494050922CAF01 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		092C4EF1486546B280C5BBDE /* libA0Auth0.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libA0Auth0.a; sourceTree = "<group>"; };
 		0CC6E52207E747EBAAE63DCF /* fa-solid-900.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "fa-solid-900.ttf"; path = "../assets/fonts/fa-solid-900.ttf"; sourceTree = "<group>"; };
-		12D3FFB92205BE12006DB7C4 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/@mapbox/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 		12D3FFED2205BF49006DB7C4 /* RCTMGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMGL.xcodeproj; path = "../node_modules/@mapbox/react-native-mapbox-gl/ios/RCTMGL.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -482,7 +482,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12D3FFF32205BF85006DB7C4 /* libRCTMGL.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -495,10 +494,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				73C30BC352AD45ECB59D8E44 /* libRNCamera.a in Frameworks */,
 				6B812D4F66AC47078D1E5856 /* libRNGestureHandler.a in Frameworks */,
-				12D3FFEA2205BE12006DB7C4 /* Mapbox.framework in Frameworks */,
-				ABDE891E82504E0D9ABC66A2 /* libA0Auth0.a in Frameworks */,
 				440A7BC0156842B1AFB6D92C /* libRNSecureKeyStore.a in Frameworks */,
 				43B3D21FEBD54B96B8503D26 /* libRNExitApp.a in Frameworks */,
 				859C02DE98C94D7E85816898 /* libBVLinearGradient.a in Frameworks */,
@@ -656,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				7236C22A21B9BD660019FD8A /* libRNGestureHandler.a */,
+				12791E37224CD1AE00C5705E /* libRNGestureHandler-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -768,7 +765,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				12D3FFB92205BE12006DB7C4 /* Mapbox.framework */,
 				13B07FAE1A68108700A75B9A /* roamiApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -874,6 +870,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1007,6 +1004,13 @@
 			fileType = archive.ar;
 			path = libRCTVibration.a;
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		12791E37224CD1AE00C5705E /* libRNGestureHandler-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNGestureHandler-tvOS.a";
+			remoteRef = 12791E36224CD1AE00C5705E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		12D3FFF22205BF4A006DB7C4 /* libRCTMGL.a */ = {
@@ -1379,7 +1383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework/strip-frameworks.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

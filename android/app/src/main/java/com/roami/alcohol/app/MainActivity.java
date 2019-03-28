@@ -1,4 +1,4 @@
-package com.gourbanmobility.service.app;
+package com.roami.alcohol.app;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

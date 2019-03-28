@@ -1,4 +1,4 @@
-package com.gourbanmobility.service.app;
+package com.roami.alcohol.app;
 
 import android.app.Application;
 
