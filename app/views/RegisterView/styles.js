@@ -36,9 +36,4 @@ export default StyleSheet.create({
         marginHorizontal: 30,
         marginBottom: 5
     },
-    reset: {
-        color: colors.BLUE_LIGHT,
-        paddingTop: 10,
-        paddingBottom: 10
-    }
 });
