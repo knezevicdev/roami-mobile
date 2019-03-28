@@ -25,6 +25,10 @@ export default class LoginComponent extends Component {
         }
     };
 
+    toRegister = () => {
+        this.props.navigation.navigate("Register");
+    }
+
     render() {
         return (
             <ImageBackground 
@@ -37,12 +41,13 @@ export default class LoginComponent extends Component {
                         source={require('../../../assets/images/logo/goUrbanMobilityWhiteLogo.png')} 
                     />
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, marginBottom: 40 }}>
                     <TextInput
                         onChangeText={email => this.setState({ email })}
                         value={this.state.email}
                         placeholder="Input email"
                         placeholderTextColor="white"
+                        style={styles.input}
                     />
                     <TextInput
                         onChangeText={password => this.setState({ password })}
@@ -50,15 +55,21 @@ export default class LoginComponent extends Component {
                         placeholder="Input passwords"
                         placeholderTextColor="white"
                         secureTextEntry={true}
+                        style={styles.input}
                     />
                     <Button
                         containerStyles={styles.button}
                         textStyles={{ color: colors.WHITE }}
                         title={'Login'} onPress={() => this.login()} 
                     />
-                </View>
-                <View style={styles.labelContainer}>
-                    <Text style={styles.text}>Powered by goUrban Mobility</Text>
+                    <Button
+                        containerStyles={styles.button}
+                        textStyles={{ color: colors.WHITE }}
+                        title={'Register'} onPress={() => this.toRegister()} 
+                    />
+                    <View style={styles.reset}>
+                        <Text style={styles.text}>Reset password</Text>
+                    </View>
                 </View>
             </ImageBackground>
         );
