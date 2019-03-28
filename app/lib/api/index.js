@@ -1,9 +1,7 @@
 import VehicleApi from "./VehicleApi";
-import LoginApi from "./LoginApi";
-import RegisterApi from './RegisterApi';
+import UserApi from "./UserApi";
 
 export {
     VehicleApi,
-    LoginApi,
-    RegisterApi
+    UserApi
 };
