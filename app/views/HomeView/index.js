@@ -77,8 +77,8 @@ export default class MainComponent extends Component {
                             )}
                         </>
                     )}
-                    <View venue="V" style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
-                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 3} )}>Press me</Text>
+                    <View style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
+                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 2} )}>Press me</Text>
                     </View>
                 </View>
             </SafeAreaView>
