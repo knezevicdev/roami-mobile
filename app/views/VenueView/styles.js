@@ -14,6 +14,7 @@ export default StyleSheet.create({
         borderRadius: 10,
         marginBottom: 5,
         color: colors.WHITE,
+        textAlign: 'center'
     },
     venue: {
         fontSize: 20,

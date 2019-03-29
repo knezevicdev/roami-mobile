@@ -13,12 +13,17 @@ class VenueApi extends Api {
         return await this.get('/item_category');
     };
 
-    static venueSearchRequest = async (itemCategoryId, priceRange, milesRange) => {
-        return await this.post('venue/search', {
-            itemCategoryId, 
-            priceRange, 
-            milesRange
-        });
+    static venueSearchRequest = async (milesRange, userLat, userLng, itemCategoryId = null, priceRange = null) => {
+        let data = {
+            milesRange,
+            userLat,
+            userLng
+        };
+
+        if(itemCategoryId != 0) data.itemCategoryId = itemCategoryId;
+        if(priceRange) data.priceRange = priceRange;
+
+        return await this.post('venue/search', data);
     };
 }
 

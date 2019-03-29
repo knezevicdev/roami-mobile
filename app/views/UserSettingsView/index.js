@@ -59,7 +59,9 @@ export default class UserSettingsComponent extends Component {
         if(!this.state.user) return (<View></View>);
         return (
             <View style={styles.container}>
-                <Header/>
+                <Header
+                    onMenuPress={() => this.props.navigation.toggleDrawer()}
+                />
                 <View style={{ marginTop: 40}}>
                     <Text style={{ paddingLeft: 30, marginTop: 5 }}>Email</Text>
                     <TextInput

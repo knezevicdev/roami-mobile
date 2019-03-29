@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PermissionsAndroid, Platform, View, Picker, Text, Slider } from "react-native";
+import { PermissionsAndroid, Platform, View, Picker, Text, Slider, Alert } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Header } from "../../components";
 import { VenueApi } from '../../lib/api';
@@ -75,11 +75,15 @@ export default class MainComponent extends Component {
     };
 
     search = async () => {
-        const { itemCategoryId, priceRange, milesRange} = this.state;
+        const { itemCategoryId, priceRange, milesRange, latitude, longitude} = this.state;
 
-        console.log('Search', itemCategoryId, priceRange, milesRange);
-        // await VenueApi.venueSearchRequest(itemCategoryId, milesRange, priceRange)
-        //     .then()
+        await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
+            if(res.data.length > 0) {
+                this.props.navigation.navigate("Map", { data: res.data, longitude, latitude });
+            } else {
+                Alert.alert("No match!");
+            }
+        }));
     }
 
     change = (milesRange) => {
@@ -157,9 +161,6 @@ export default class MainComponent extends Component {
                                 SEARCH
                             </Text>
                         </LinearGradient>
-                    </View>
-                    <View style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
-                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 4} )}>Press me</Text>
                     </View>
                 </View>
             </SafeAreaView>

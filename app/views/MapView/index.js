@@ -1,12 +1,11 @@
 import React from "react";
-import { View, Alert } from "react-native";
+import { View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import styles from "./styles";
 
 class MapComponent extends React.Component {
-
-    onMarkerPress = (objectInfo) => (event) => {
-        Alert.alert(objectInfo);
+    onMarkerPress = (marker) => (event) => {
+        this.props.navigation.navigate("Venue", { id: marker.id} )
     }
 
     render() {
@@ -16,16 +15,21 @@ class MapComponent extends React.Component {
                     provider={PROVIDER_GOOGLE}
                     style={styles.map}
                     region={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
+                        latitude: this.props.navigation.state.params.latitude,
+                        longitude: this.props.navigation.state.params.longitude,
                         latitudeDelta: 0.015,
                         longitudeDelta: 0.0121,
                     }}
                 >
-                    <Marker coordinate={{
-                        latitude: 37.78825,
-                        longitude: -122.4324
-                    }} onPress={this.onMarkerPress("Gligorije!")}/>
+                    {
+                        this.props.navigation.state.params.data ? this.props.navigation.state.params.data.map(marker => (
+                            <Marker key={marker.id} 
+                                    coordinate={{
+                                    latitude: marker.position.coordinates[1],
+                                    longitude: marker.position.coordinates[0]
+                            }} onPress={this.onMarkerPress(marker)}/>
+                        )) : <></>
+                    }
                 </MapView>
             </View>
         )
