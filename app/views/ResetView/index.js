@@ -4,6 +4,7 @@ import { Button } from '../../components';
 import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class ResetComponent extends Component {
     state = {
@@ -45,8 +46,8 @@ export default class ResetComponent extends Component {
                 >
                 <View style={styles.logoContainer}>
                     <Image 
-                        style={{ width: '80%' }} resizeMode={'contain'}
-                        source={require('../../../assets/images/logo/goUrbanMobilityWhiteLogo.png')} 
+                        style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
+                        source={require('../../../assets/images/logo/logo-r.png')} 
                     />
                 </View>
                 <View style={{ flex: 1, marginBottom: 40, paddingBottom: 120 }}>
@@ -64,16 +65,28 @@ export default class ResetComponent extends Component {
                         placeholderTextColor="white"
                         style={styles.input}
                     />
-                    <Button
-                        containerStyles={styles.button}
-                        textStyles={{ color: colors.WHITE }}
-                        title={'Reset email'} onPress={() => this.reset()} 
-                    />
-                    <Button
-                        containerStyles={styles.button}
-                        textStyles={{ color: colors.WHITE }}
-                        title={'Return to login'} onPress={() => this.toLogin()} 
-                    />
+                    <LinearGradient
+                        colors={['#FF8943', '#F74251']}
+                        style={styles.button}
+                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                    >
+                        <Text
+                            onPress={() => this.reset()}
+                        >
+                            RESET EMAIL
+                        </Text>
+                    </LinearGradient>
+                    <LinearGradient
+                        colors={['#FF8943', '#F74251']}
+                        style={styles.button}
+                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                    >
+                        <Text
+                            onPress={() => this.toLogin()}
+                        >
+                            LOGIN
+                        </Text>
+                    </LinearGradient>
                 </View>
             </ImageBackground>
         );

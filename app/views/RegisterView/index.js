@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { Button } from '../../components';
 import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
@@ -50,8 +51,8 @@ export default class RegisterComponent extends Component {
                 >
                 <View style={styles.logoContainer}>
                     <Image 
-                        style={{ width: '80%' }} resizeMode={'contain'}
-                        source={require('../../../assets/images/logo/goUrbanMobilityWhiteLogo.png')} 
+                        style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
+                        source={require('../../../assets/images/logo/logo-r.png')} 
                     />
                 </View>
                 <View style={{ flex: 1, marginBottom: 40, paddingBottom: 120 }}>
@@ -91,16 +92,33 @@ export default class RegisterComponent extends Component {
                         style={styles.input}
                         secureTextEntry={true}
                     />
-                    <Button
-                        containerStyles={styles.button}
-                        textStyles={{ color: colors.WHITE }}
-                        title={'Register'} onPress={() => this.register()} 
-                    />
-                    <Button
-                        containerStyles={styles.button}
-                        textStyles={{ color: colors.WHITE }}
-                        title={'Login'} onPress={() => this.toLogin()} 
-                    />
+                    <LinearGradient
+                        colors={['#FF8943', '#F74251']}
+                        style={styles.button}
+                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                    >
+                        <Text
+                            containerStyles={styles.button}
+                            textStyles={{ color: colors.WHITE }}
+                            onPress={() => this.register()} 
+                            onPress={() => this.toLogin()} 
+                        >
+                            REGISTER
+                        </Text>
+                    </LinearGradient>
+                    <LinearGradient
+                        colors={['#FF8943', '#F74251']}
+                        style={styles.button}
+                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                    >
+                        <Text
+                            containerStyles={styles.button}
+                            textStyles={{ color: colors.WHITE }}
+                            onPress={() => this.toLogin()} 
+                        >
+                            LOGIN
+                        </Text>
+                    </LinearGradient>
                 </View>
             </ImageBackground>
         );

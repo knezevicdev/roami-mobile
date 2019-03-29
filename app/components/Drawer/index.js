@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { SafeAreaView } from "react-navigation"; 
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Button } from '..';
 import { removeAccessToken } from '../../lib/auth';
 import LinearGradient from 'react-native-linear-gradient';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { colors } from '../../config';
 import styles from "./styles";
 
@@ -18,9 +18,9 @@ export default class DrawerComponent extends Component {
     render() {
         return (
             <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
-                <LinearGradient colors={[colors.BLUE_LIGHT, colors.BLUE_DARK]} style={styles.container}>
-                    <View style={styles.header}></View>
-
+                <LinearGradient colors={['#FF8943', '#F74251']} style={styles.container}>
+                    <View style={styles.header}>
+                    </View>
                     <View style={styles.body}>
                         <View style={styles.bodyContainer}>
                             <Button 

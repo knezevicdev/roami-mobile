@@ -27,13 +27,14 @@ export default StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 10,
         borderRadius: 10,
-        marginBottom: 5
+        marginBottom: 5,
     },
     input: {
         backgroundColor: colors.WHITE_TRANSPARENT,
         borderRadius: 10,
         paddingVertical: 10,
         marginHorizontal: 30,
-        marginBottom: 5
+        marginBottom: 5,
+        paddingLeft: 20,
     },
 });

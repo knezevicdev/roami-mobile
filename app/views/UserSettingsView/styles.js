@@ -4,7 +4,6 @@ import { colors } from "../../config";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40
     },
     text: {
         alignSelf: 'center',
@@ -15,6 +14,8 @@ export default StyleSheet.create({
         borderRadius: 4,
         marginBottom: 5,
         width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     input: {
         backgroundColor: colors.WHITE_TRANSPARENT,
@@ -22,7 +23,8 @@ export default StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 30,
         marginBottom: 5,
-        backgroundColor: colors.BLUE_SEARCH,
-        color: colors.WHITE
+        backgroundColor: colors.GRAY_TEXT,
+        color: colors.WHITE,
+        paddingLeft: 20
     },
 });

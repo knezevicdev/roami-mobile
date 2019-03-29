@@ -21,24 +21,27 @@ export default StyleSheet.create({
         right: 0
     },
     button: {
-        backgroundColor: colors.BUTTON_TRANSPARENT_COLOR,
         marginHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 10,
         borderRadius: 10,
-        marginBottom: 5
+        marginBottom: 5,
     },
     input: {
         backgroundColor: colors.WHITE_TRANSPARENT,
         borderRadius: 10,
         paddingVertical: 10,
         marginHorizontal: 30,
-        marginBottom: 5
+        marginBottom: 5,
+        paddingLeft: 20
     },
     reset: {
         color: colors.BLUE_LIGHT,
         paddingTop: 10,
         paddingBottom: 10
+    },
+    buttonText: {
+        color: colors.WHITE,
     }
 });
