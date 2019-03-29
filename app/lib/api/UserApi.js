@@ -28,6 +28,22 @@ class UserApi extends Api {
             false
         );
     };
+
+    static getUser = async () => {
+        return await this.get(`/user`);
+    }
+
+    static updateUser = async (first_name, last_name, email, password, newPassword, repeatedNewPassword ) => {
+        return this.put(`/user`, {
+                first_name,
+                last_name,
+                email,
+                password,
+                newPassword,
+                repeatedNewPassword
+            }
+        );
+    };
 }
 
 export default UserApi;
