@@ -19,15 +19,15 @@ export default class SplashView extends Component {
 
     render() {
         return (
-            <ImageBackground style={styles.container}
-                             source={require('../../../assets/images/background/backgroundImage.png')}>
-
+            <ImageBackground 
+                style={styles.container}
+                source={require('../../../assets/images/background/backgroundImage.png')}
+            >
                 <View style={styles.logoContainer}>
-                    <Image style={{ width: '80%' }} resizeMode={'contain'}
-                           source={require('../../../assets/images/logo/goUrbanMobilityWhiteLogo.png')} />
-                </View>
-                <View style={styles.labelContainer}>
-                    <Text style={styles.text}>Powered by goUrban Mobility</Text>
+                    <Image 
+                        style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
+                        source={require('../../../assets/images/logo/logo-r.png')} 
+                    />
                 </View>
             </ImageBackground>
         );

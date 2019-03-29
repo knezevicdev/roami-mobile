@@ -8,25 +8,28 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from "./styles";
 
 export default class HeaderComponent extends Component {
-  static propTypes = {
-    onMenuPress: PropTypes.func,
-  };
+    static propTypes = {
+        onMenuPress: PropTypes.func,
+    };
 
-  render() {
-    return (
-      <LinearGradient colors={[colors.BLUE_LIGHT, colors.BLUE_DARK]} style={styles.container}>
-        <View style={styles.leftContainer}>
-          <Button onPress={this.props.onMenuPress}>
-            <MaterialIcon name={'menu'} size={32} color={colors.WHITE} /></Button>
-        </View>
+    render() {
+        return (
+            <LinearGradient colors={['#FF8943', '#F74251']} style={styles.container}>
+                <View style={styles.leftContainer}>
+                    <Button onPress={this.props.onMenuPress}>
+                        <MaterialIcon name={'menu'} size={32} color={colors.WHITE} />
+                    </Button>
+                </View>
 
-        <View style={styles.centerContainer}>
-          <Image style={{ height: 30, width: 100 }} resizeMode={'contain'}
-                 source={require('../../../assets/images/logo/goUrbanMobilityWhiteLogo.png')} />
-        </View>
+                <View style={styles.centerContainer}>
+                    <Image 
+                        style={{ height: 30, width: 100 }} resizeMode={'contain'}
+                        source={require('../../../assets/images/logo/logo-r.png')} 
+                    />
+                </View>
 
-        <View style={styles.rightContainer}>{this.props.children}</View>
-      </LinearGradient>
-    );
-  }
+                <View style={styles.rightContainer}>{this.props.children}</View>
+            </LinearGradient>
+        );
+    }
 };
