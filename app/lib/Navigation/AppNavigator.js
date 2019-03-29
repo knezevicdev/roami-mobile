@@ -17,6 +17,15 @@ const DrawerNavigator = createDrawerNavigator({
         screen: createStackNavigator({
             Home: {
                 screen: HomeView,
+            },
+            Venue: {
+                screen: VenueView,
+            },
+            Map: {
+                screen: MapView,
+            },
+            UserSettings: {
+                screen: UserSettingsView,
             }
         }, {
             headerMode:'none',

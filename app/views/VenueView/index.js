@@ -16,15 +16,14 @@ export default class VenueComponent extends Component {
         };
     }
 
-    toHome = () => {
-        this.props.navigation.navigate("Home");
+    goBack = () => {
+        this.props.navigation.goBack();
     }
 
     async componentDidMount() {
         const id = this.props.navigation.state.params.id;
 
         await VenueApi.venueRequest(id).then(response => {
-            console.log(response.data);
             this.setState({ venue: response.data });
         }).catch(error => {
             console.log(error)
@@ -106,7 +105,7 @@ export default class VenueComponent extends Component {
                         }
                     </View>
                 }
-                <Text style={styles.button} onPress={() => this.toHome()}>Go back</Text>
+                <Text style={styles.button} onPress={() => this.goBack()}>Go back</Text>
             </ScrollView>
         );
     }
