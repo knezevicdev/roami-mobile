@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { PermissionsAndroid, Platform, View, Picker, Text } from "react-native";
+import { PermissionsAndroid, Platform, View, Picker, Text, Slider } from "react-native";
 import { SafeAreaView } from "react-navigation";
-import { Header, Button } from "../../components";
+import { Header } from "../../components";
 import { VenueApi } from '../../lib/api';
 import Geolocation from "react-native-geolocation-service";
 import TopBar from './components/TopBar';
 import styles from "./styles";
+import LinearGradient from "react-native-linear-gradient";
 
 export default class MainComponent extends Component {
     state = {
@@ -76,9 +77,15 @@ export default class MainComponent extends Component {
     search = async () => {
         const { itemCategoryId, priceRange, milesRange} = this.state;
 
-        console.log('Search', itemCategoryId, milesRange, priceRange );
-        await VenueApi.venueSearchRequest(itemCategoryId, milesRange, priceRange)
-            .then()
+        console.log('Search', itemCategoryId, priceRange, milesRange);
+        // await VenueApi.venueSearchRequest(itemCategoryId, milesRange, priceRange)
+        //     .then()
+    }
+
+    change = (milesRange) => {
+        this.setState({
+            milesRange: milesRange
+        });
     }
 
     render() {
@@ -98,8 +105,8 @@ export default class MainComponent extends Component {
                     <View 
                         style={styles.search}
                     >   
+                        <Text style={{ paddingLeft: 30}}>Select category</Text>
                         <Picker
-                             
                             style={styles.select}
                             selectedValue={this.state.itemCategoryId}
                             onValueChange={(itemValue) =>
@@ -113,6 +120,7 @@ export default class MainComponent extends Component {
                                 })
                             }
                         </Picker>
+                        <Text style={{ paddingLeft: 30, marginTop: 20}}>Select price range</Text>
                         <Picker 
                             style={styles.select}
                             selectedValue={this.state.priceRange}
@@ -127,32 +135,32 @@ export default class MainComponent extends Component {
                             <Picker.Item label="15 - 20" value="15-20"/>
                             <Picker.Item label="20+" value="20+"/>
                         </Picker>
-                        <Picker 
-                            style={styles.select}
-                            selectedValue={this.state.milesRange}
-                            onValueChange={(itemValue) =>
+                        <Text style={{ paddingLeft: 30, marginTop: 20}}>Miles range: {this.state.milesRange}</Text>
+                        <Slider
+                            style={styles.slide}
+                            step={1}
+                            maximumValue={50}
+                            onValueChange={(itemValue) => 
                                 this.setState({ milesRange: itemValue })
                             }
-                        >
-                            <Picker.Item label="Please select miles range" value="0"/>
-                            <Picker.Item label="0 - 5" value="0-5"/>
-                            <Picker.Item label="5 - 10" value="5-10"/>
-                            <Picker.Item label="10 - 15" value="10-15"/>
-                            <Picker.Item label="15 - 20" value="15-20"/>
-                            <Picker.Item label="20+" value="20+"/>
-                        </Picker>
-                        <Button
-                            containerStyles={styles.button}
-                            title={'Search'} 
-                            onPress={() => this.search()} 
+                            value={this.state.milesRange}
                         />
-                    </View>
-                    {/* <View style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
-                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 2} )}>Press me</Text>
+                        <LinearGradient
+                            colors={['#FF8943', '#F74251']}
+                            style={styles.button}
+                            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                        >
+                            <Text
+                                containerStyles={styles.button}
+                                onPress={() => this.search()}
+                            >
+                                SEARCH
+                            </Text>
+                        </LinearGradient>
                     </View>
                     <View style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
-                        <Text onPress={() =>  this.props.navigation.navigate("UserSettings", { id: 3} )}>Edit user</Text>
-                    </View> */}
+                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 4} )}>Press me</Text>
+                    </View>
                 </View>
             </SafeAreaView>
         );
