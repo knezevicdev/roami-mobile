@@ -26,6 +26,7 @@
 		32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B058CB55C8C2470A992A2793 /* libRNSVG.a */; };
 		43B3D21FEBD54B96B8503D26 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC90EF013954EB59E42DDE7 /* libRNExitApp.a */; };
 		440A7BC0156842B1AFB6D92C /* libRNSecureKeyStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFBEB51AA4E4425892737F0 /* libRNSecureKeyStore.a */; };
+		589EB9E11309AAE517FD07F9 /* libPods-roamiApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E46E945A8ECBB098170A33 /* libPods-roamiApp.a */; };
 		5C5C3FE09C8A4397B1042C32 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D31A41A60B064E809DA3DF50 /* Octicons.ttf */; };
 		5F22F6BCC3B44DD08F76D8CB /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D64BD532F26A471A8663140B /* MaterialCommunityIcons.ttf */; };
 		6B812D4F66AC47078D1E5856 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEB95A4D49A4A488C554AC9 /* libRNGestureHandler.a */; };
@@ -98,6 +99,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = C4D1443D1F4E16F600396F26;
 			remoteInfo = RCTMGL;
+		};
+		12EAD38F224E39150080C3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
+			remoteInfo = React;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -451,8 +459,10 @@
 		5D1F8F04F8EC43DEB8F502BA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		63FDB693B859466DB7EA72C6 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		73E46E945A8ECBB098170A33 /* libPods-roamiApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-roamiApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		773DD6E0E77044A2A9530A1A /* RNSecureKeyStore.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSecureKeyStore.xcodeproj; path = "../node_modules/react-native-secure-key-store/ios/RNSecureKeyStore.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7C09A7FCB90A7AD0414A747F /* Pods-roamiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roamiApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roamiApp/Pods-roamiApp.debug.xcconfig"; sourceTree = "<group>"; };
 		804192DF3FD44BD8A1271A69 /* fa-brands-400.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "fa-brands-400.ttf"; path = "../assets/fonts/fa-brands-400.ttf"; sourceTree = "<group>"; };
 		8212CA2FC2784EA29B4EE0A6 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -465,6 +475,7 @@
 		B058CB55C8C2470A992A2793 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
 		B182BBF29BEE459CAFCAB1CE /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		C16B065D47604CBB9FAFE468 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		CA2B4E00B395630D9B880AA2 /* Pods-roamiApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roamiApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-roamiApp/Pods-roamiApp.release.xcconfig"; sourceTree = "<group>"; };
 		CDFBEB51AA4E4425892737F0 /* libRNSecureKeyStore.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSecureKeyStore.a; sourceTree = "<group>"; };
 		D31A41A60B064E809DA3DF50 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		D64BD532F26A471A8663140B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -500,6 +511,7 @@
 				859C02DE98C94D7E85816898 /* libBVLinearGradient.a in Frameworks */,
 				D92DA4C02F884BEF9BCF1D1B /* libRNVectorIcons.a in Frameworks */,
 				32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */,
+				589EB9E11309AAE517FD07F9 /* libPods-roamiApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				73E46E945A8ECBB098170A33 /* libPods-roamiApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -771,6 +784,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				7236C1F621B9BD660019FD8A /* Recovered References */,
 				9229C249F2B0424FBC8864F4 /* Resources */,
+				B2CFB4F5A2E977AF4AB7A1D9 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -819,6 +833,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B2CFB4F5A2E977AF4AB7A1D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C09A7FCB90A7AD0414A747F /* Pods-roamiApp.debug.xcconfig */,
+				CA2B4E00B395630D9B880AA2 /* Pods-roamiApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -826,16 +849,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "roamiApp" */;
 			buildPhases = (
+				CE14066E06CBDD5220A624CB /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				12D3FFEC2205BE12006DB7C4 /* Embed Frameworks */,
 				12D3FFF42205C1CB006DB7C4 /* ShellScript */,
+				9691C325E756722145BAC6D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				12EAD390224E39150080C3BF /* PBXTargetDependency */,
 			);
 			name = roamiApp;
 			productName = "Hello World";
@@ -1385,6 +1411,50 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
+		9691C325E756722145BAC6D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-roamiApp/Pods-roamiApp-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-roamiApp/Pods-roamiApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE14066E06CBDD5220A624CB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-roamiApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1398,6 +1468,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12EAD390224E39150080C3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = React;
+			targetProxy = 12EAD38F224E39150080C3BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
@@ -1414,6 +1492,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C09A7FCB90A7AD0414A747F /* Pods-roamiApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = roamiApp/roamiApp.entitlements;
@@ -1425,15 +1504,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"<Multiple",
 					"values>",
-					"$(PROJECT_DIR)/../node_modules/@mapbox/react-native-mapbox-gl/ios",
+					"$(SRCROOT)/Pods/**",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"<Multiple",
-					"values>",
-					"$(PROJECT_DIR)/../node_modules/@mapbox/react-native-mapbox-gl/ios",
-				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "<Multiple $(SRCROOT)/Pods/** values>";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(REACT_HEADERS_PATH)",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/Image",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
@@ -1444,21 +1524,31 @@
 				);
 				INFOPLIST_FILE = roamiApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"/**",
+				);
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.decem.gourban.roamiapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.decem.roamiapp;
 				PRODUCT_NAME = roamiApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				REACT_HEADERS_PATH = "$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA2B4E00B395630D9B880AA2 /* Pods-roamiApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = roamiApp/roamiApp.entitlements;
@@ -1469,10 +1559,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"<Multiple",
 					"values>",
-					"$(PROJECT_DIR)/../node_modules/@mapbox/react-native-mapbox-gl/ios",
+					"$(SRCROOT)/Pods/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(REACT_HEADERS_PATH)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
@@ -1483,15 +1574,24 @@
 				);
 				INFOPLIST_FILE = roamiApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"/**",
+				);
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.decem.gourban.roamiapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.decem.roamiapp;
 				PRODUCT_NAME = roamiApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				REACT_HEADERS_PATH = "$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

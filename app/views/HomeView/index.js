@@ -78,7 +78,7 @@ export default class MainComponent extends Component {
                         </>
                     )}
                     <View style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
-                        <Text onPress={() =>  this.props.navigation.navigate("Venue", { id: 2} )}>Press me</Text>
+                        <Text onPress={() =>  this.props.navigation.navigate("Map", { id: 2} )}>Press me</Text>
                     </View>
                     <View style={{ width: 50, height: 50, backgroundColor: 'orange'}}>
                         <Text onPress={() =>  this.props.navigation.navigate("UserSettings", { id: 3} )}>Edit user</Text>
