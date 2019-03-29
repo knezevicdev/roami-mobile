@@ -7,7 +7,19 @@ class VenueApi extends Api {
 
     static venueRequest = async (id) => {
         return await this.get(`/venue/${id}`);
-    }
+    };
+
+    static itemCategorysRequest = async (id) => {
+        return await this.get('/item_category');
+    };
+
+    static venueSearchRequest = async (itemCategoryId, priceRange, milesRange) => {
+        return await this.post('venue/search', {
+            itemCategoryId, 
+            priceRange, 
+            milesRange
+        });
+    };
 }
 
 export default VenueApi;

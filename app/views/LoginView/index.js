@@ -9,7 +9,7 @@ import styles from "./styles";
 export default class LoginComponent extends Component {
     state = {
         email: "test@mail.sii",
-        password: "testerii"
+        password: "testerii",
     };
 
     login = async () => {
