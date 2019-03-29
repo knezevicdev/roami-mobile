@@ -6,6 +6,7 @@ import HomeView from '../../views/HomeView';
 import RegisterView from '../../views/RegisterView';
 import ResetView from '../../views/ResetView';
 import VenueView from '../../views/VenueView';
+import MapView from '../../views/MapView';
 import UserSettingsView from '../../views/UserSettingsView';
 import { Drawer } from '../../components'
 
@@ -32,6 +33,7 @@ const AppNavigator = createSwitchNavigator({
     Register: { screen: RegisterView },
     Reset: { screen: ResetView },
     Venue: { screen: VenueView },
+    Map: { screen: MapView },
     UserSettings: { screen: UserSettingsView }
 });
 
