@@ -18,13 +18,14 @@ export default StyleSheet.create({
         marginTop: 5,
         alignItems: 'center',
         justifyContent: 'center',
+        color: "#ffffff"
     },
     select: {
         backgroundColor: colors.GRAY_TEXT,
         paddingVertical: 10,
         marginHorizontal: 30,
         marginBottom: 5,
-        marginTop: 5,
+        marginTop: 5
     },
     slide: {
         paddingVertical: 10,

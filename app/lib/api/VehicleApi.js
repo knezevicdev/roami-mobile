@@ -11,11 +11,11 @@ class VehicleApi extends Api {
     };
 
     static list = (id = 3) => {
-        return this.get(`/back/vehicles/branch/${id}`);
+        return this.post(`/back/vehicles/branch/${id}`);
     };
 
     static details = (id) => {
-        return this.get(`/back/vehicles/${id}/details`);
+        return this.post(`/back/vehicles/${id}/details`);
     };
 
     static locate = (id) => {

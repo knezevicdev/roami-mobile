@@ -10,7 +10,7 @@ export default StyleSheet.create({
         color: colors.WHITE
     },
     logoContainer: {
-        flex: 2,
+        height: "30%",
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -36,5 +36,6 @@ export default StyleSheet.create({
         marginHorizontal: 30,
         marginBottom: 5,
         paddingLeft: 20,
+        color: "#ffffff"
     },
 });

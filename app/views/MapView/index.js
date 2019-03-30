@@ -1,5 +1,6 @@
 import React from "react";
 import { View } from "react-native";
+import { SafeAreaView } from "react-navigation";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import styles from "./styles";
 
@@ -10,7 +11,7 @@ class MapComponent extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <MapView
                     provider={PROVIDER_GOOGLE}
                     style={styles.map}
@@ -31,7 +32,7 @@ class MapComponent extends React.Component {
                         )) : <></>
                     }
                 </MapView>
-            </View>
+            </SafeAreaView>
         )
     }
 }

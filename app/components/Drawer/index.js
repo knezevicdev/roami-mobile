@@ -20,6 +20,10 @@ export default class DrawerComponent extends Component {
             <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
                 <LinearGradient colors={['#FF8943', '#F74251']} style={styles.container}>
                     <View style={styles.header}>
+                        <Image 
+                            style={{ width: '15%', backgroundColor: 'transparent' }} resizeMode={'contain'}
+                            source={require('../../../assets/images/logo/logo-r.png')} 
+                        />
                     </View>
                     <View style={styles.body}>
                         <View style={styles.bodyContainer}>

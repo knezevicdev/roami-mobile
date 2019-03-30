@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, Alert } from 'react-native';
+import { SafeAreaView } from "react-navigation";
 import LinearGradient from 'react-native-linear-gradient';
 import { UserApi } from '../../lib/api';
 import { Header } from "../../components";
-import { SafeAreaView } from '../../components/Drawer';
 import styles from './styles';
 
 export default class UserSettingsComponent extends Component {
@@ -56,13 +56,12 @@ export default class UserSettingsComponent extends Component {
     }
 
     render() {
-        if(!this.state.user) return (<View></View>);
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <Header
                     onMenuPress={() => this.props.navigation.toggleDrawer()}
                 />
-                <View style={{ marginTop: 40}}>
+                {!this.state.user ? <View></View>:<View style={{ marginTop: 40}}>
                     <Text style={{ paddingLeft: 30, marginTop: 5 }}>Email</Text>
                     <TextInput
                         onChangeText={email => this.setState({ email })}
@@ -135,6 +134,7 @@ export default class UserSettingsComponent extends Component {
                     >
                         <Text
                             onPress={() => this.updateUser()} 
+                            style={{color: "#ffffff"}}
                         >
                             UPDATE USER
                         </Text>
@@ -147,12 +147,13 @@ export default class UserSettingsComponent extends Component {
                     >
                         <Text
                             onPress={() => this.navigateToHome()}
+                            style={{color: "#ffffff"}}
                         >
                             GO BACK
                         </Text>
                     </LinearGradient>
-                </View>
-            </View>
+                </View>}
+            </SafeAreaView>
         );
     }
 }

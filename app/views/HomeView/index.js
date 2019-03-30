@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PermissionsAndroid, Platform, View, Picker, Text, Slider, Alert } from "react-native";
+import { PermissionsAndroid, Platform, View, PickerIOS, Text, Slider, Alert, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Header } from "../../components";
 import { VenueApi } from '../../lib/api';
@@ -7,6 +7,34 @@ import Geolocation from "react-native-geolocation-service";
 import TopBar from './components/TopBar';
 import styles from "./styles";
 import LinearGradient from "react-native-linear-gradient";
+import RNPickerSelect from 'react-native-picker-select';
+
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+      fontSize: 16,
+      paddingVertical: 12,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
+      marginHorizontal: 30,
+      marginTop: 5
+    },
+    inputAndroid: {
+      fontSize: 16,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      borderWidth: 0.5,
+      borderColor: 'gray',
+      borderRadius: 8,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
+      marginHorizontal: 30,
+      marginTop: 5
+    },
+  });
 
 export default class MainComponent extends Component {
     state = {
@@ -16,7 +44,7 @@ export default class MainComponent extends Component {
         item_categorys: '',
         itemCategoryId: null,
         priceRange: null,
-        milesRange: null
+        milesRange: 5
     };
 
     async componentDidMount() {
@@ -25,6 +53,8 @@ export default class MainComponent extends Component {
                 this.setState({
                     item_categorys: res.data
                 })
+            })
+            .catch(error => {
             });
 
         if (Platform.OS === "android") {
@@ -110,35 +140,91 @@ export default class MainComponent extends Component {
                         style={styles.search}
                     >   
                         <Text style={{ paddingLeft: 30}}>Select category</Text>
-                        <Picker
+                        {/* <PickerIOS
                             style={styles.select}
                             selectedValue={this.state.itemCategoryId}
                             onValueChange={(itemValue) =>
                                 this.setState({ itemCategoryId: itemValue })
                             }
                         >   
-                            <Picker.Item label="Please select category" value="0"/>
+                            <PickerIOS.Item label="Please select category" value="0"/>
                             {
                                 (this.state.item_categorys || []).map((category) => {
-                                    return <Picker.Item key={category.id} label={category.name} value={category.id} />
+                                    return <PickerIOS.Item key={category.id} label={category.name} value={category.id} />
                                 })
                             }
-                        </Picker>
+                        </PickerIOS> */}
+                        <RNPickerSelect
+                            placeholder={{
+                                label: 'Select category...',
+                                value: 0,
+                                color: '#9EA0A4',
+                            }}
+                            style={pickerSelectStyles}
+                            items={(this.state.item_categorys || []).map((category) => {
+                                return {
+                                    label: category.name,
+                                    value: category.id
+                                }
+                            })}
+                            onValueChange={value => {
+                                this.setState({
+                                    itemCategoryId: value,
+                                });
+                            }}
+                            value={this.state.itemCategoryId}
+                        />
                         <Text style={{ paddingLeft: 30, marginTop: 20}}>Select price range</Text>
-                        <Picker 
+                        <RNPickerSelect
+                            placeholder={{
+                                label: 'Select price range...',
+                                value: 0,
+                                color: '#9EA0A4',
+                            }}
+                            style={pickerSelectStyles}
+                            items={[
+                                {
+                                    label: "0$ - 5$",
+                                    value: "0-5"
+                                },
+                                {
+                                    label: "5$ - 10$",
+                                    value: "5-10"
+                                },
+                                {
+                                    label: "10$ - 15$",
+                                    value: "10-15"
+                                },
+                                {
+                                    label: "15$ - 20$",
+                                    value: "15-20"
+                                },
+                                {
+                                    label: "20$+",
+                                    value: "20+"
+                                },
+                            ]}
+                            onValueChange={value => {
+                                this.setState({
+                                    priceRange: value,
+                                });
+                            }}
+                            value={this.state.priceRange}
+                        />
+                        {/* <PickerIOS 
                             style={styles.select}
                             selectedValue={this.state.priceRange}
                             onValueChange={(itemValue) =>
                                 this.setState({ priceRange: itemValue })
                             }
                         >
-                            <Picker.Item label="Please select price range" value="0"/>
-                            <Picker.Item label="0 - 5" value="0-5"/>
-                            <Picker.Item label="5 - 10" value="5-10"/>
-                            <Picker.Item label="10 - 15" value="10-15"/>
-                            <Picker.Item label="15 - 20" value="15-20"/>
-                            <Picker.Item label="20+" value="20+"/>
-                        </Picker>
+                            <PickerIOS.Item label="Please select price range" value="0"/>
+                            <PickerIOS.Item label="0 - 5" value="0-5"/>
+                            <PickerIOS.Item label="5 - 10" value="5-10"/>
+                            <PickerIOS.Item label="10 - 15" value="10-15"/>
+                            <PickerIOS.Item label="15 - 20" value="15-20"/>
+                            <PickerIOS.Item label="20+" value="20+"/>
+                        </PickerIOS> */}
                         <Text style={{ paddingLeft: 30, marginTop: 20}}>Miles range: {this.state.milesRange}</Text>
                         <Slider
                             style={styles.slide}
@@ -155,7 +241,7 @@ export default class MainComponent extends Component {
                             start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
                         >
                             <Text
-                                containerStyles={styles.button}
+                                style={styles.button}
                                 onPress={() => this.search()}
                             >
                                 SEARCH

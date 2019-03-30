@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
+import { SafeAreaView } from "react-navigation";
 import { Button } from '../../components';
 import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
@@ -8,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 export default class ResetComponent extends Component {
     state = {
-        email: 'test@mail.com',
+        email: '',
         reseted: false,
         resetMsg: 'Email with instructions is sent to your email.'
     };
@@ -40,55 +41,63 @@ export default class ResetComponent extends Component {
 
     render() {
         return (
-            <ImageBackground 
-                    style={styles.container}
-                    source={require('../../../assets/images/background/backgroundImage.png')}
-                >
-                <View style={styles.logoContainer}>
-                    <Image 
-                        style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
-                        source={require('../../../assets/images/logo/logo-r.png')} 
-                    />
-                </View>
-                <View style={{ flex: 1, marginBottom: 40, paddingBottom: 120 }}>
-                    {
-                        this.state.reseted ? 
-                            <View>
-                                <Text style={styles.text}>{this.state.resetMsg}</Text>
-                            </View> : 
-                        null
-                    }
-                    <TextInput
-                        onChangeText={email => this.setState({ email })}
-                        value={this.state.email}
-                        placeholder="Enter email"
-                        placeholderTextColor="white"
-                        style={styles.input}
-                    />
-                    <LinearGradient
-                        colors={['#FF8943', '#F74251']}
-                        style={styles.button}
-                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+            <SafeAreaView style={{flex: 1}}>
+                <ImageBackground 
+                        style={styles.container}
+                        source={require('../../../assets/images/background/backgroundImage.png')}
                     >
-                        <Text
-                            onPress={() => this.reset()}
+                    <View style={styles.logoContainer}>
+                        <Image 
+                            style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
+                            source={require('../../../assets/images/logo/logo-r.png')} 
+                        />
+                    </View>
+                    <View style={{ flex: 2, marginBottom: 40, paddingBottom: 120 }}>
+                        {
+                            this.state.reseted ? 
+                                <View>
+                                    <Text style={styles.text}>{this.state.resetMsg}</Text>
+                                </View> : 
+                            null
+                        }
+                        <TextInput
+                            onChangeText={email => this.setState({ email })}
+                            value={this.state.email}
+                            placeholder="Enter email"
+                            placeholderTextColor="white"
+                            autoComplete="email"
+                            keyboardType="email-address"
+                            textContentType="emailAddress"
+                            autoCapitalize="none"
+                            style={styles.input}
+                        />
+                        <LinearGradient
+                            colors={['#FF8943', '#F74251']}
+                            style={styles.button}
+                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                         >
-                            RESET EMAIL
-                        </Text>
-                    </LinearGradient>
-                    <LinearGradient
-                        colors={['#FF8943', '#F74251']}
-                        style={styles.button}
-                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                    >
-                        <Text
-                            onPress={() => this.toLogin()}
+                            <Text
+                                style={{color: "#ffffff"}}
+                                onPress={() => this.reset()}
+                            >
+                                RESET EMAIL
+                            </Text>
+                        </LinearGradient>
+                        <LinearGradient
+                            colors={['#FF8943', '#F74251']}
+                            style={styles.button}
+                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                         >
-                            LOGIN
-                        </Text>
-                    </LinearGradient>
-                </View>
-            </ImageBackground>
+                            <Text
+                                style={{color: "#ffffff"}}
+                                onPress={() => this.toLogin()}
+                            >
+                                LOGIN
+                            </Text>
+                        </LinearGradient>
+                    </View>
+                </ImageBackground>
+            </SafeAreaView>
         );
     }
 }

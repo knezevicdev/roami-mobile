@@ -10,7 +10,7 @@ export default StyleSheet.create({
         color: colors.WHITE
     },
     logoContainer: {
-        flex: 2,
+        height: "30%",
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -34,7 +34,8 @@ export default StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 30,
         marginBottom: 5,
-        paddingLeft: 20
+        paddingLeft: 20,
+        color: "#ffffff"
     },
     reset: {
         color: colors.BLUE_LIGHT,
@@ -42,6 +43,6 @@ export default StyleSheet.create({
         paddingBottom: 10
     },
     buttonText: {
-        color: colors.WHITE,
+        color: colors.WHITE
     }
 });

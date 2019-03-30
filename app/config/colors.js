@@ -7,7 +7,7 @@ export default {
     BLACK: '#000',
     BLACK_TEXT: '#3d4451',
     GRAY_TEXT: '#b2b2b4',
-    WHITE: '#fff',
+    WHITE: '#ffffff',
     WHITE_TRANSPARENT: 'rgba(255,255,255,0.1)',
     BUTTON_TRANSPARENT_COLOR: 'rgba(38,33,33,0.7)',
     SWITCH_TRANSPARENT_COLOR: 'rgba(38,33,33,0.4)'

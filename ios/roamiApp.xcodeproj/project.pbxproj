@@ -26,7 +26,6 @@
 		32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B058CB55C8C2470A992A2793 /* libRNSVG.a */; };
 		43B3D21FEBD54B96B8503D26 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC90EF013954EB59E42DDE7 /* libRNExitApp.a */; };
 		440A7BC0156842B1AFB6D92C /* libRNSecureKeyStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFBEB51AA4E4425892737F0 /* libRNSecureKeyStore.a */; };
-		589EB9E11309AAE517FD07F9 /* libPods-roamiApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E46E945A8ECBB098170A33 /* libPods-roamiApp.a */; };
 		5C5C3FE09C8A4397B1042C32 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D31A41A60B064E809DA3DF50 /* Octicons.ttf */; };
 		5F22F6BCC3B44DD08F76D8CB /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D64BD532F26A471A8663140B /* MaterialCommunityIcons.ttf */; };
 		6B812D4F66AC47078D1E5856 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEB95A4D49A4A488C554AC9 /* libRNGestureHandler.a */; };
@@ -511,7 +510,6 @@
 				859C02DE98C94D7E85816898 /* libBVLinearGradient.a in Frameworks */,
 				D92DA4C02F884BEF9BCF1D1B /* libRNVectorIcons.a in Frameworks */,
 				32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */,
-				589EB9E11309AAE517FD07F9 /* libPods-roamiApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,7 +883,7 @@
 								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1495,12 +1493,12 @@
 			baseConfigurationReference = 7C09A7FCB90A7AD0414A747F /* Pods-roamiApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = roamiApp/roamiApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 7C4V4Z5HXP;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"<Multiple",
 					"values>",
@@ -1509,7 +1507,11 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "<Multiple $(SRCROOT)/Pods/** values>";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"<Multiple",
+					"$(SRCROOT)/Pods/**",
+					"values>",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(REACT_HEADERS_PATH)",
@@ -1551,16 +1553,18 @@
 			baseConfigurationReference = CA2B4E00B395630D9B880AA2 /* Pods-roamiApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = roamiApp/roamiApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7C4V4Z5HXP;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"<Multiple",
-					"values>",
 					"$(SRCROOT)/Pods/**",
+					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/Pods/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(REACT_HEADERS_PATH)",
@@ -1576,7 +1580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)/**",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"/**",

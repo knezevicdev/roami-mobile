@@ -2,15 +2,15 @@ import Api from "./Api";
 
 class VenueApi extends Api {
     static venueAllRequest = async () => {
-        return await this.get('/venue');
+        return await this.post('venue');
     };
 
     static venueRequest = async (id) => {
-        return await this.get(`/venue/${id}`);
+        return await this.post(`venue/${id}`);
     };
 
     static itemCategorysRequest = async () => {
-        return await this.get('/item_category');
+        return await this.post('item_category');
     };
 
     static venueSearchRequest = async (milesRange, userLat, userLng, itemCategoryId = null, priceRange = null) => {

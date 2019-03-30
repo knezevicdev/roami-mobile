@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput, ScrollView } from 'react-native';
+import { SafeAreaView } from "react-navigation";
 import { Button } from '../../components';
 import { colors } from '../../config';
 import { VenueApi } from '../../lib/api';
@@ -26,6 +27,7 @@ export default class VenueComponent extends Component {
         await VenueApi.venueRequest(id).then(response => {
             this.setState({ venue: response.data });
         }).catch(error => {
+            Alert.alert(JSON.stringify(error));
             console.log(error)
         });
     }
@@ -45,68 +47,70 @@ export default class VenueComponent extends Component {
     }
 
     render() {
-        if(!this.state.venue) return (<View></View>);
+        if(!this.state.venue) return (<View><Text>Loading...</Text></View>);
         return (
-            <ScrollView>
-                <ImageBackground
-                    style={styles.picture}
-                    source={require('../../../assets/images/background/backgroundImage.png')}
-                />
-                <View style={styles.venueNav}>
-                    <Text onPress={() => this.setState({ infoActive: true, itemActive: false })} style={styles.venueTab}>Info</Text>
-                    <Text onPress={() => this.setState({ infoActive: false, itemActive: true })} style={styles.venueTab}>Items</Text>
-                </View>
-                {
-                    this.state.infoActive ? 
-                    <View style={styles.location}>
-                        <View>
-                            <Text style={styles.placeName}>{this.state.venue.name}</Text>
-                            <View style={styles.venueContainer}>
-                                <Text>Adress:</Text>
-                                <Text>{this.state.venue.address}</Text>
-                                <Text>{this.state.venue.zip} {this.state.venue.city.name}, {this.state.venue.region.name}</Text>
-                            </View>
-                            <View style={styles.venueContainer}>
-                                <Text>Working period:</Text>
-                                {
-                                    (this.state.venue.workingPeriods || []).map(period => {
-                                        return(
-                                            <View key={period.id}>
-                                                <Text>Day {period.day}</Text>
-                                                <Text>Open {period.open}</Text>
-                                                <Text>Close {period.close}</Text>
-                                            </View>
-                                        )
-                                    })
-                                }
-                            </View>
-                        </View>
-                        <View style={styles.venueContainer}>
-                            {(this.state.venue.phones || []).map(phone => <Text key={phone.id}>Phone {phone.phone}</Text>)}
-                            {(this.state.venue.emails || []).map(email => <Text key={email.id}>Email {email.email}</Text>)}
-                        </View>
-                        <View style={styles.venueContainer}>
-                            <Text>Description {this.state.venue.description}</Text>
-                            <Text>Website {this.state.venue.website}</Text>
-                            <Text>Facebook {this.state.venue.facebook_link}</Text>
-                            <Text>Twitter {this.state.venue.twitter_link}</Text>
-                            <Text>Instagram {this.state.venue.instagram_link}</Text>
-                        </View>
-                    </View> 
-                    :
-                    <View style={styles.location}>
-                        {
-                            (this.state.venue.items || []).map((item) => 
-                                <View key={item.id} style={styles.items} >
-                                    <Text>{item.name}</Text>
-                                    <Text style={styles.item}>{item.itemVenues.price / 100} $</Text>
-                                </View>
-                            )
-                        }
+            <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
+                <ScrollView>
+                    <ImageBackground
+                        style={styles.picture}
+                        source={require('../../../assets/images/background/backgroundImage.png')}
+                    />
+                    <View style={styles.venueNav}>
+                        <Text onPress={() => this.setState({ infoActive: true, itemActive: false })} style={styles.venueTab}>Info</Text>
+                        <Text onPress={() => this.setState({ infoActive: false, itemActive: true })} style={styles.venueTab}>Items</Text>
                     </View>
-                }
-                <Text style={styles.button} onPress={() => this.goBack()}>Go back</Text>
-            </ScrollView>
+                    {
+                        this.state.infoActive ? 
+                        <View style={styles.location}>
+                            <View>
+                                <Text style={styles.placeName}>{this.state.venue.name}</Text>
+                                <View style={styles.venueContainer}>
+                                    <Text>Adress:</Text>
+                                    <Text>{this.state.venue.address}</Text>
+                                    <Text>{this.state.venue.zip} {this.state.venue.city.name}, {this.state.venue.region.name}</Text>
+                                </View>
+                                <View style={styles.venueContainer}>
+                                    <Text>Working period:</Text>
+                                    {
+                                        (this.state.venue.workingPeriods || []).map(period => {
+                                            return(
+                                                <View key={period.id}>
+                                                    <Text>Day {period.day}</Text>
+                                                    <Text>Open {period.open}</Text>
+                                                    <Text>Close {period.close}</Text>
+                                                </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                            </View>
+                            <View style={styles.venueContainer}>
+                                {(this.state.venue.phones || []).map(phone => <Text key={phone.id}>Phone {phone.phone}</Text>)}
+                                {(this.state.venue.emails || []).map(email => <Text key={email.id}>Email {email.email}</Text>)}
+                            </View>
+                            <View style={styles.venueContainer}>
+                                <Text>Description {this.state.venue.description}</Text>
+                                <Text>Website {this.state.venue.website}</Text>
+                                <Text>Facebook {this.state.venue.facebook_link}</Text>
+                                <Text>Twitter {this.state.venue.twitter_link}</Text>
+                                <Text>Instagram {this.state.venue.instagram_link}</Text>
+                            </View>
+                        </View> 
+                        :
+                        <View style={styles.location}>
+                            {
+                                (this.state.venue.items || []).map((item) => 
+                                    <View key={item.id} style={styles.items} >
+                                        <Text>{item.name}</Text>
+                                        <Text style={styles.item}>{item.itemVenues.price / 100} $</Text>
+                                    </View>
+                                )
+                            }
+                        </View>
+                    }
+                    <Text style={styles.button} onPress={() => this.goBack()}>Go back</Text>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }
