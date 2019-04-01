@@ -28,7 +28,7 @@ target 'roamiApp' do
     'RCTWebSocket',
   ]
 
-  pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
+  #pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
   pod 'glog', :podspec => "#{rn_path}/third-party-podspecs/glog.podspec"
   pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
 
@@ -45,6 +45,10 @@ post_install do |installer|
       target.build_configurations.each do |config|
         config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
       end
+    end
+    
+    if target.name == "React"
+      target.remove_from_project
     end
   end
 end

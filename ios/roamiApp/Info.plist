@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -52,8 +52,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Scanning QR code for vehicel harvest.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>In order to find the nearest drinks and bars.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>In order to get the initial location to find drinks and bars.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

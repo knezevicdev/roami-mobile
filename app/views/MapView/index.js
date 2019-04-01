@@ -32,6 +32,7 @@ class MapComponent extends React.Component {
                         )) : <></>
                     }
                 </MapView>
+                
             </SafeAreaView>
         )
     }

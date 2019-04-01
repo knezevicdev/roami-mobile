@@ -21,7 +21,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		22EE80CA9C519D716CFB86F6 /* libPods-roamiApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E46E945A8ECBB098170A33 /* libPods-roamiApp.a */; };
 		2CC930CAE68748F69A919AF5 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1649721DAA74E7F803CFE96 /* AntDesign.ttf */; };
 		32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B058CB55C8C2470A992A2793 /* libRNSVG.a */; };
 		43B3D21FEBD54B96B8503D26 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC90EF013954EB59E42DDE7 /* libRNExitApp.a */; };
@@ -85,6 +85,13 @@
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
 		};
+		1238A7432250DDC700B72E49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
+			remoteInfo = React;
+		};
 		12791E36224CD1AE00C5705E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E07F7F31D6E6446D8B5FFE5A /* RNGestureHandler.xcodeproj */;
@@ -98,13 +105,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = C4D1443D1F4E16F600396F26;
 			remoteInfo = RCTMGL;
-		};
-		12EAD38F224E39150080C3BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
-			remoteInfo = React;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -494,7 +494,6 @@
 			files = (
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
-				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -510,6 +509,7 @@
 				859C02DE98C94D7E85816898 /* libBVLinearGradient.a in Frameworks */,
 				D92DA4C02F884BEF9BCF1D1B /* libRNVectorIcons.a in Frameworks */,
 				32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */,
+				22EE80CA9C519D716CFB86F6 /* libPods-roamiApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,7 +859,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				12EAD390224E39150080C3BF /* PBXTargetDependency */,
+				1238A7442250DDC700B72E49 /* PBXTargetDependency */,
 			);
 			name = roamiApp;
 			productName = "Hello World";
@@ -1468,10 +1468,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		12EAD390224E39150080C3BF /* PBXTargetDependency */ = {
+		1238A7442250DDC700B72E49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = React;
-			targetProxy = 12EAD38F224E39150080C3BF /* PBXContainerItemProxy */;
+			targetProxy = 1238A7432250DDC700B72E49 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1512,6 +1512,7 @@
 					"$(SRCROOT)/Pods/**",
 					"values>",
 				);
+				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(REACT_HEADERS_PATH)",
@@ -1565,6 +1566,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/Pods/**";
+				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(REACT_HEADERS_PATH)",

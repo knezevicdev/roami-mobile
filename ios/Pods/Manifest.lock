@@ -1,6 +1,6 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - DoubleConversion (1.1.6)
+  - DoubleConversion (1.1.5)
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
@@ -83,7 +83,6 @@ PODS:
   - yoga (0.57.8.React)
 
 DEPENDENCIES:
-  - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Google-Maps-iOS-Utils
@@ -108,12 +107,11 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
+    - DoubleConversion
     - Google-Maps-iOS-Utils
     - GoogleMaps
 
 EXTERNAL SOURCES:
-  DoubleConversion:
-    :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
@@ -129,7 +127,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
+  DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
@@ -139,6 +137,6 @@ SPEC CHECKSUMS:
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 40d62fccb2454cbfa7169b899af6d18f68268908
+PODFILE CHECKSUM: 556641e8ffe6c31e4f1a105d8355d713201e6ff2
 
 COCOAPODS: 1.5.3
