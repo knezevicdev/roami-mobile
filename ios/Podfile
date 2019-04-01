@@ -38,6 +38,7 @@ target 'roamiApp' do
   pod 'Google-Maps-iOS-Utils'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn', '~> 4.4.0'
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 

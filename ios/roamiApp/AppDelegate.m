@@ -12,6 +12,7 @@
 #import <React/RCTLinkingManager.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "RNGoogleSignin.h"
 
 @implementation AppDelegate
 
@@ -52,7 +53,10 @@
                                                                 openURL:url
                                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                                              annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-                  ];
+                  ] || [RNGoogleSignin application:application
+                        openURL:url
+                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                        annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
   // Add any custom logic here.
   return handled;
 }
