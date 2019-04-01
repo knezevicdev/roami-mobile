@@ -1,32 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Formik } from 'formik';
 import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
 import { SafeAreaView } from "react-navigation";
-import { Button } from '../../components';
-import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class ResetComponent extends Component {
     state = {
-        email: '',
         reseted: false,
-        resetMsg: 'Email with instructions is sent to your email.'
+        resetMsg: 'Email with instructions is sent to your email.',
+        resetRequested: false
     };
 
-    reset = async () => {
-        await UserApi.resetRequest(this.state.email)
+    reset = async (email) => {
+        await UserApi.resetRequest(email)
             .then((res) => {
                 if(res.status === 200) {
                     this.setState({
                         reseted: true,
+                        resetRequested: true
                     });
                     setTimeout(() => {
                         this.props.navigation.navigate("Login");
                     }, 2000)
                 } else {
                     this.setState({
-                        reseted: false
+                        reseted: false,
+                        resetRequested: false
                     });
                 }
             })
@@ -53,48 +54,61 @@ export default class ResetComponent extends Component {
                         />
                     </View>
                     <View style={{ flex: 2, marginBottom: 40, paddingBottom: 120 }}>
-                        {
-                            this.state.reseted ? 
-                                <View>
-                                    <Text style={styles.text}>{this.state.resetMsg}</Text>
-                                </View> : 
-                            null
-                        }
-                        <TextInput
-                            onChangeText={email => this.setState({ email })}
-                            value={this.state.email}
-                            placeholder="Enter email"
-                            placeholderTextColor="white"
-                            autoComplete="email"
-                            keyboardType="email-address"
-                            textContentType="emailAddress"
-                            autoCapitalize="none"
-                            style={styles.input}
-                        />
-                        <LinearGradient
-                            colors={['#FF8943', '#F74251']}
-                            style={styles.button}
-                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                        <Formik
+                            initialValues={{
+                                email: ''
+                            }}
+                            onSubmit={values => this.reset(values.email)}
                         >
-                            <Text
-                                style={{color: "#ffffff"}}
-                                onPress={() => this.reset()}
-                            >
-                                RESET EMAIL
-                            </Text>
-                        </LinearGradient>
-                        <LinearGradient
-                            colors={['#FF8943', '#F74251']}
-                            style={styles.button}
-                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                        >
-                            <Text
-                                style={{color: "#ffffff"}}
-                                onPress={() => this.toLogin()}
-                            >
-                                LOGIN
-                            </Text>
-                        </LinearGradient>
+                            {({ values, handleChange, handleSubmit }) => (
+                                <Fragment>
+                                    {
+                                        this.state.reseted ? 
+                                            <View>
+                                                <Text style={styles.text}>{this.state.resetMsg}</Text>
+                                            </View> : 
+                                        null
+                                    }
+                                    <TextInput
+                                        onChangeText={handleChange('email')}
+                                        value={values.email}
+                                        placeholder="Enter email"
+                                        placeholderTextColor="white"
+                                        autoComplete="email"
+                                        keyboardType="email-address"
+                                        textContentType="emailAddress"
+                                        autoCapitalize="none"
+                                        style={styles.input}
+                                    />
+                                    <LinearGradient
+                                        colors={['#FF8943', '#F74251']}
+                                        style={styles.button}
+                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                    >
+                                        <Text
+                                            style={{color: "#ffffff"}}
+                                            onPress={handleSubmit}
+                                        >
+                                            {
+                                                this.state.resetRequested ? "RESET INSTRUCTION ARE COMMING" : "RESET"
+                                            }
+                                        </Text>
+                                    </LinearGradient>
+                                    <LinearGradient
+                                        colors={['#FF8943', '#F74251']}
+                                        style={styles.button}
+                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                    >
+                                        <Text
+                                            style={{color: "#ffffff"}}
+                                            onPress={() => this.toLogin()}
+                                        >
+                                            LOGIN
+                                        </Text>
+                                    </LinearGradient>
+                                </Fragment>
+                            )}
+                        </Formik>
                     </View>
                 </ImageBackground>
             </SafeAreaView>

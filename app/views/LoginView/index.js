@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Text, ImageBackground, Image, View, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from "react-navigation";
+import { Formik } from 'formik';
 import LinearGradient from 'react-native-linear-gradient';
 import { storeAccessToken } from '../../lib/auth';
 import { UserApi } from '../../lib/api';
@@ -9,20 +10,31 @@ import styles from "./styles";
 
 export default class LoginComponent extends Component {
     state = {
-        email: "",
-        password: "",
+        loginRequested: false
     };
 
-    login = async () => {
+    login = async (email, password) => {
         try {
-            UserApi.loginRequest(this.state.email, this.state.password).then(response => {
+            await UserApi.loginRequest(email, password).then(response => {
+                console.log('res', response.data);
+                this.setState({
+                    loginRequested: true
+                })
                 storeAccessToken(response.data.token);
-                this.props.navigation.navigate("Home");
+                setTimeout(() => {
+                    this.props.navigation.navigate("Home");
+                }, 4000);
             }).catch(error => {
+                this.setState({
+                    loginRequested: false
+                });
                 Alert.alert("Your username or password is not valid.");
-                console.log(error)
+                console.log(error);
             });
         } catch (error) {
+            this.setState({
+                loginRequested: false
+            });
             Alert.alert("Your username or password is not valid.");
             console.log(error);
         }
@@ -40,9 +52,9 @@ export default class LoginComponent extends Component {
         return (
             <SafeAreaView style={{flex: 1}}>
                 <ImageBackground 
-                        style={styles.container}
-                        source={require('../../../assets/images/background/backgroundImage.png')}
-                    >
+                    style={styles.container}
+                    source={require('../../../assets/images/background/backgroundImage.png')}
+                >
                     <View style={styles.logoContainer}>
                         <Image 
                             style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
@@ -50,45 +62,59 @@ export default class LoginComponent extends Component {
                         />
                     </View>
                     <View style={{ flex: 2, marginBottom: 40 }}>
-                        <TextInput
-                            onChangeText={email => this.setState({ email })}
-                            value={this.state.email}
-                            placeholder="Input email"
-                            placeholderTextColor="white"
-                            autoComplete="email"
-                            keyboardType="email-address"
-                            textContentType="emailAddress"
-                            autoCapitalize="none"
-                            style={styles.input}
-                        />
-                        <TextInput
-                            onChangeText={password => this.setState({ password })}
-                            value={this.state.password}
-                            placeholder="Input passwords"
-                            placeholderTextColor="white"
-                            secureTextEntry={true}
-                            style={styles.input}
-                        />
+                        <Formik
+                            initialValues={{ 
+                                email: 'test@mail.com', 
+                                password:'test123'
+                            }}
+                            onSubmit={values => this.login(values.email, values.password)}
+                        >
+                            {({ values, handleChange, handleSubmit }) => (
+                                <Fragment>
+                                    <TextInput
+                                        value={values.email} 
+                                        onChangeText={handleChange('email')}
+                                        placeholder="Email"
+                                        placeholderTextColor="white"
+                                        style={styles.input}
+                                        autoComplete="email"
+                                        keyboardType="email-address"
+                                        textContentType="emailAddress"
+                                        autoCapitalize="none"
+                                    />
+                                    <TextInput
+                                        value={values.password} 
+                                        onChangeText={handleChange('password')}
+                                        placeholder="Password"
+                                        secureTextEntry={true}
+                                        placeholderTextColor="white"
+                                        style={styles.input}
+                                    />
+                                    <LinearGradient
+                                        colors={['#FF8943', '#F74251']}
+                                        style={styles.button}
+                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                                    >
+                                        <Text
+                                            style={{ color: colors.WHITE }}
+                                            onPress={handleSubmit}
+                                        >
+                                            {
+                                                this.state.loginRequested ? "LOADING" : "LOGIN"
+                                            }
+                                        </Text>
+                                    </LinearGradient>
+                                </Fragment>
+                            )}
+                        </Formik>
                         <LinearGradient
                             colors={['#FF8943', '#F74251']}
                             style={styles.button}
                             start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
                         >
                             <Text
-                                style={{ color: colors.WHITE }}
-                                onPress={() => this.login()}  
-                            >
-                                LOGIN
-                            </Text>
-                        </LinearGradient>
-                        <LinearGradient
-                            colors={['#FF8943', '#F74251']}
-                            style={styles.button}
-                            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                        >
-                            <Text
-                                style={styles.buttonText}
                                 onPress={() => this.registration()} 
+                                style={styles.buttonText}
                             >
                                 REGISTER
                             </Text>
