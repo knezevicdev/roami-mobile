@@ -6,6 +6,7 @@ import { storeAccessToken } from '../../lib/auth';
 import { UserApi } from '../../lib/api';
 import { colors } from '../../config';
 import styles from "./styles";
+import { LoginButton, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
 export default class LoginComponent extends Component {
     state = {
@@ -35,6 +36,27 @@ export default class LoginComponent extends Component {
     toReset = () => {
         this.props.navigation.navigate("Reset");
     }
+
+    async FBGraphRequest(fields, callback) {
+        const accessData = await AccessToken.getCurrentAccessToken();
+        const infoRequest = new GraphRequest('/me', {
+          accessToken: accessData.accessToken,
+          parameters: {
+            fields: {
+              string: fields
+            }
+          }
+        }, callback.bind(this));
+        new GraphRequestManager().addRequest(infoRequest).start();
+    }
+
+    async FBLoginCallback(error, result) {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log("******", result.email, result.id, "******");
+        }
+      }
 
     render() {
         return (
@@ -95,6 +117,22 @@ export default class LoginComponent extends Component {
                         </LinearGradient>
                         <View style={styles.reset}>
                             <Text onPress={() => this.toReset()} style={styles.text}>Reset password</Text>
+                        </View>
+                        <View>
+                            <LoginButton
+                                readPermissions={["public_profile email"]}
+                                onLoginFinished={
+                                    (error, result) => {
+                                    if (error) {
+                                        console.log("login has error: " + result.error);
+                                    } else if (result.isCancelled) {
+                                        console.log("login is cancelled.");
+                                    } else {
+                                        this.FBGraphRequest('id, email, picture.type(large)', this.FBLoginCallback);
+                                        }
+                                    }
+                                }
+                                onLogoutFinished={() => console.log("logout.")}/>
                         </View>
                     </View>
                 </ImageBackground>
