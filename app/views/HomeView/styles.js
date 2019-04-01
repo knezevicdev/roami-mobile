@@ -32,5 +32,23 @@ export default StyleSheet.create({
         marginHorizontal: 20,
         marginBottom: 5,
         marginTop: 5,
+    },
+    loading: {
+        flex: 1,
+        backgroundColor: colors.BUTTON_TRANSPARENT_COLOR,
+        width: '100%',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 1000,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    loadingText: {
+        color: '#fff',
+        position: 'absolute',
+        fontSize: 20
     }
 });

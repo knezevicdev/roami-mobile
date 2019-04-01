@@ -1,30 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Text, ImageBackground, Image, View, TextInput, Alert } from 'react-native';
+import { Formik } from 'formik';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from "react-navigation";
-import { Button } from '../../components';
 import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
 
 export default class RegisterComponent extends Component {
     state = {
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
         registered: false,
-        registerMsg: 'Please confirm your email address'
+        registerMsg: 'Please confirm your email address',
+        registerRequested: false
     };
 
-    register = async () => {
-        const { first_name, last_name, email, password } = this.state;
-        
+    register = async (first_name, last_name, email, password) => {
         await UserApi.registerRequest(first_name, last_name, email, password)
             .then((res) => {
                 if(res.status === 200) {
                     this.setState({
-                        registered: true
+                        registered: true,
+                        registerRequested: true
                     });
 
                     Alert.alert("Successfully registered!");
@@ -34,7 +30,8 @@ export default class RegisterComponent extends Component {
                 } else {
                     Alert.alert("Error while registration.");
                     this.setState({
-                        registered: false
+                        registered: false,
+                        registerRequested: false
                     })
                 }
             })
@@ -62,72 +59,88 @@ export default class RegisterComponent extends Component {
                         />
                     </View>
                     <View style={{ flex: 2, marginBottom: 40, paddingBottom: 120 }}>
-                        {
-                            this.state.registered ? 
-                                <View>
-                                    <Text style={styles.text}>{this.state.registerMsg}</Text>
-                                </View> : 
-                            null
-                        }
-                        <TextInput
-                            onChangeText={first_name => this.setState({ first_name })}
-                            value={this.state.first_name}
-                            placeholder="Input first name"
-                            placeholderTextColor="white"
-                            style={styles.input}
-                        />
-                        <TextInput
-                            onChangeText={last_name => this.setState({ last_name })}
-                            value={this.state.last_name}
-                            placeholder="Input last name"
-                            placeholderTextColor="white"
-                            style={styles.input}
-                        />
-                        <TextInput
-                            onChangeText={email => this.setState({ email })}
-                            value={this.state.email}
-                            placeholder="Input email"
-                            placeholderTextColor="white"
-                            autoComplete="email"
-                            keyboardType="email-address"
-                            textContentType="emailAddress"
-                            autoCapitalize="none"
-                            style={styles.input}
-                        />
-                        <TextInput
-                            onChangeText={password => this.setState({ password })}
-                            value={this.state.password}
-                            placeholder="Input password"
-                            placeholderTextColor="white"
-                            style={styles.input}
-                            secureTextEntry={true}
-                        />
-                        <LinearGradient
-                            colors={['#FF8943', '#F74251']}
-                            style={styles.button}
-                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                        <Formik
+                            initialValues={{
+                                first_name: "",
+                                last_name: "",
+                                email: "",
+                                password: "",
+                            }}
+                            onSubmit={values => this.register(values.first_name, values.last_name, values.email, values.password)}
                         >
-                            <Text
-                                containerStyles={styles.button}
-                                style={{ color: colors.WHITE }}
-                                onPress={() => this.register()}
-                            >
-                                REGISTER
-                            </Text>
-                        </LinearGradient>
-                        <LinearGradient
-                            colors={['#FF8943', '#F74251']}
-                            style={styles.button}
-                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                        >
-                            <Text
-                                containerStyles={styles.button}
-                                style={{ color: colors.WHITE }}
-                                onPress={() => this.toLogin()} 
-                            >
-                                LOGIN
-                            </Text>
-                        </LinearGradient>
+                            {({ values, handleChange, handleSubmit }) => (
+                                <Fragment>
+                                    {
+                                        this.state.registered ? 
+                                            <View>
+                                                <Text style={styles.text}>{this.state.registerMsg}</Text>
+                                            </View> : 
+                                        null
+                                    }
+                                    <TextInput
+                                        onChangeText={handleChange('first_name')}
+                                        value={values.first_name}
+                                        placeholder="Enter first name"
+                                        placeholderTextColor="white"
+                                        style={styles.input}
+                                    />
+                                    <TextInput
+                                        onChangeText={handleChange('last_name')}
+                                        value={values.last_name}
+                                        placeholder="Enter last name"
+                                        placeholderTextColor="white"
+                                        style={styles.input}
+                                    />
+                                    <TextInput
+                                        onChangeText={handleChange('email')}
+                                        value={values.email}
+                                        placeholder="Enter email"
+                                        placeholderTextColor="white"
+                                        autoComplete="email"
+                                        keyboardType="email-address"
+                                        textContentType="emailAddress"
+                                        autoCapitalize="none"
+                                        style={styles.input}
+                                    />
+                                    <TextInput
+                                        onChangeText={handleChange('password')}
+                                        value={values.password}
+                                        placeholder="Enter password"
+                                        placeholderTextColor="white"
+                                        style={styles.input}
+                                        secureTextEntry={true}
+                                    />
+                                    <LinearGradient
+                                        colors={['#FF8943', '#F74251']}
+                                        style={styles.button}
+                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                    >
+                                        <Text
+                                            containerStyles={styles.button}
+                                            style={{ color: colors.WHITE }}
+                                            onPress={handleSubmit}
+                                        >
+                                            {
+                                                this.state.registerRequested ? "REGISTERING" : "REGISTER"
+                                            }
+                                        </Text>
+                                    </LinearGradient>
+                                    <LinearGradient
+                                        colors={['#FF8943', '#F74251']}
+                                        style={styles.button}
+                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                    >
+                                        <Text
+                                            containerStyles={styles.button}
+                                            style={{ color: colors.WHITE }}
+                                            onPress={() => this.toLogin()} 
+                                        >
+                                            LOGIN
+                                        </Text>
+                                    </LinearGradient>
+                                </Fragment>
+                            )}
+                        </Formik>
                     </View>
                 </ImageBackground>
             </SafeAreaView>
