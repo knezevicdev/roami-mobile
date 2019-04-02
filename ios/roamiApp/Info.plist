@@ -33,6 +33,14 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>com.googleusercontent.apps.358499972961-nfgn8iml44mf6kk44a21956un4e7i1q6</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
 				<string>com.googleusercontent.apps.358499972961-f0dcer0p1bqu6bgn0o4o9llsullq0faf</string>
 			</array>
 		</dict>
