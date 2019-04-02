@@ -47,9 +47,6 @@ export default class MainComponent extends Component {
     };
 
     async componentDidMount() {
-        this.setState({
-            searchRequested: false
-        })
         await VenueApi.itemCategorysRequest()
             .then((res) => {
                 this.setState({
@@ -109,12 +106,15 @@ export default class MainComponent extends Component {
 
     search = async (itemCategoryId, priceRange, milesRange, latitude, longitude) => {
         await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
-            if(res.data.length > 0) {
+            console.log('res', res);
+            if(res.data && res.data.length > 0) {
                 this.setState({
                     searchRequested: true
                 })
                 setTimeout(() => {
-                    this.props.navigation.navigate("Map", { data: res.data, longitude, latitude });
+                    this.props.navigation.navigate("Map", { 
+                        data: res.data, longitude, latitude, itemCategoryId, priceRange, milesRange 
+                    });
                     this.setState({
                         searchRequested: false
                     });
