@@ -71,19 +71,24 @@ export default class MainComponent extends Component {
                 console.warn(err);
             });
         }
-        await Geolocation.getCurrentPosition(
-            position => {
-                this.setState({
-                    longitude: position.coords.longitude,
-                    latitude: position.coords.latitude,
-                    loadedCoords: true
-                });
-            },
-            error => {
-                console.warn(error.message);
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        );
+
+        try {
+            await Geolocation.getCurrentPosition(
+                position => {
+                    this.setState({
+                        longitude: position.coords.longitude,
+                        latitude: position.coords.latitude,
+                        loadedCoords: true
+                    });
+                },
+                error => {
+                    console.warn(error.message);
+                },
+                { enableHighAccuracy: true, timeout: 5000, maximumAge: 10000 }
+            );
+        } catch(e) {
+            Alert.alert("Unable to get current location.");
+        }
     }
 
     recenter = () => {
