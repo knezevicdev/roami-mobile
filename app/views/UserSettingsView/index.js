@@ -16,6 +16,7 @@ export default class UserSettingsComponent extends Component {
             email: "",
             first_name: "",
             last_name: "",
+            userUpdateRequest: false
         };
     }
 
@@ -23,7 +24,15 @@ export default class UserSettingsComponent extends Component {
         await UserApi.updateUser(email, first_name, last_name, password, newPassword, repeatedNewPassword)
             .then((res) => {
                 if(res.status === 200) {
-                    this.navigateToHome();
+                    this.setState({
+                        userUpdateRequest: true
+                    })
+                    setTimeout(() => {
+                        this.navigateToHome();
+                        this.setState({
+                            userUpdateRequest: true
+                        })
+                    }, 4000);
                 } else {
                     this.setState({
                         registered: false
@@ -59,16 +68,22 @@ export default class UserSettingsComponent extends Component {
                     onMenuPress={() => this.props.navigation.toggleDrawer()}
                 />
                 {
+                    this.state.userUpdateRequest ?
+                    <View style={styles.loading}>
+                        <Text style={styles.loadingText}>UPDATING...</Text>
+                    </View> : null
+                }
+                {
                     !this.state.user ? <View></View>:
                     <View style={{ marginTop: 40}}>
                         <Formik
                             initialValues={{
-                                email: "",
-                                first_name: "",
-                                last_name: "",
-                                password: "",
-                                newPassword: "",
-                                repeatedNewPassword: ""
+                                email: "test@mail.com",
+                                first_name: "Mitar",
+                                last_name: "Djakovic",
+                                password: "test1234",
+                                newPassword: "test12345",
+                                repeatedNewPassword: "test12346"
                             }}
                             onSubmit={values => this.updateUser(
                                 values.email, 

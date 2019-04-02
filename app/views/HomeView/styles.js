@@ -14,11 +14,11 @@ export default StyleSheet.create({
         borderRadius: 10,
         paddingVertical: 10,
         marginHorizontal: 30,
-        marginBottom: 5,
-        marginTop: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        color: "#ffffff"
+        color: "#ffffff",
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     select: {
         backgroundColor: colors.GRAY_TEXT,
