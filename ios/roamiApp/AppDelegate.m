@@ -11,12 +11,15 @@
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "RNGoogleSignin.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [GMSServices provideAPIKey:@"AIzaSyA5VHqcjYb4AE3k_2IbMyG4jv-dUThR0a8"];
+  [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
@@ -40,6 +43,26 @@
 {
   return [RCTLinkingManager application:application openURL:url
                       sourceApplication:sourceApplication annotation:annotation];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  
+  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                openURL:url
+                                                      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                  ] || [RNGoogleSignin application:application
+                        openURL:url
+                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                        annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+  // Add any custom logic here.
+  return handled;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
 }
 
 @end

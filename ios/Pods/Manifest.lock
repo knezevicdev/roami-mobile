@@ -1,6 +1,18 @@
 PODS:
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.5)
+  - FBSDKCoreKit (4.42.0):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.42.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.42.0):
+    - FBSDKCoreKit
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
@@ -27,8 +39,35 @@ PODS:
   - GoogleMaps/Base (2.5.0)
   - GoogleMaps/Maps (2.5.0):
     - GoogleMaps/Base
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.2.0):
+    - GoogleToolboxForMac/Defines (= 2.2.0)
+  - GoogleToolboxForMac/Defines (2.2.0)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.0)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.0)
+    - GoogleToolboxForMac/Defines (= 2.2.0)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.0)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.0)"
+  - GTMSessionFetcher/Core (1.2.1)
   - React (0.57.8):
     - React/Core (= 0.57.8)
+  - react-native-fbsdk (0.8.0):
+    - React
+    - react-native-fbsdk/Core (= 0.8.0)
+    - react-native-fbsdk/Login (= 0.8.0)
+    - react-native-fbsdk/Share (= 0.8.0)
+  - react-native-fbsdk/Core (0.8.0):
+    - FBSDKCoreKit
+    - React
+  - react-native-fbsdk/Login (0.8.0):
+    - FBSDKLoginKit
+    - React
+  - react-native-fbsdk/Share (0.8.0):
+    - FBSDKShareKit
+    - React
   - react-native-google-maps (0.23.0):
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 2.5.0)
@@ -83,10 +122,14 @@ PODS:
   - yoga (0.57.8.React)
 
 DEPENDENCIES:
+  - FBSDKCoreKit
+  - FBSDKLoginKit
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Google-Maps-iOS-Utils
   - GoogleMaps
+  - GoogleSignIn (~> 4.4.0)
+  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - React/Core (from `../node_modules/react-native`)
@@ -106,10 +149,17 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts
     - boost-for-react-native
     - DoubleConversion
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
     - Google-Maps-iOS-Utils
     - GoogleMaps
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
 
 EXTERNAL SOURCES:
   Folly:
@@ -118,6 +168,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-fbsdk:
+    :path: "../node_modules/react-native-fbsdk"
   react-native-google-maps:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
@@ -126,17 +178,25 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga/Yoga.podspec"
 
 SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
+  FBSDKCoreKit: aa42f1c384775f8b075f53a43080474278e9701d
+  FBSDKLoginKit: 373830c68aa48c9e8f0bfed93a3e32d2ca8963a0
+  FBSDKShareKit: 387749259d79e4070ebb304b3fd256e4b4bc4298
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  react-native-fbsdk: d5f98cc5abecbcc463e3c35c04743d716d002d37
   react-native-google-maps: b946d62e25dc66097921ed82520e45b0b081768a
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 556641e8ffe6c31e4f1a105d8355d713201e6ff2
+PODFILE CHECKSUM: 556afbe782a8ccb88e9363a9292fd04de018e68e
 
 COCOAPODS: 1.5.3

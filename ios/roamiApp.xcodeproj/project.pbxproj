@@ -33,6 +33,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		85468B6E7BFD4ECABBD9B08C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B012DF8D85A42958C6F16AC /* EvilIcons.ttf */; };
 		859C02DE98C94D7E85816898 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD751A7D99124387AB6A8B78 /* libBVLinearGradient.a */; };
+		8DCA7B3159B24CBDA9859AE7 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE270A6E84241FE86FE1E51 /* libRNGoogleSignin.a */; };
 		92A34553B51242099E5664F9 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8212CA2FC2784EA29B4EE0A6 /* Entypo.ttf */; };
 		948A56AB41C14F3B844E2EFE /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CC6E52207E747EBAAE63DCF /* fa-solid-900.ttf */; };
 		9FDE79FC155F493E80F1BB8D /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA14CF4E69734E6BA3C11952 /* FontAwesome5_Brands.ttf */; };
@@ -98,6 +99,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
 			remoteInfo = "RNGestureHandler-tvOS";
+		};
+		12C6685F2252536200E5256A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE031A5A4EE544B481077BDA /* RNGoogleSignin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9FD355121D3E4A2900D06170;
+			remoteInfo = RNGoogleSignin;
 		};
 		12D3FFF12205BF4A006DB7C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -466,6 +474,7 @@
 		8212CA2FC2784EA29B4EE0A6 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8E2639541B3C498B90E53A13 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		9DE270A6E84241FE86FE1E51 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
 		A1649721DAA74E7F803CFE96 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		AA14CF4E69734E6BA3C11952 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		AD690A4AD68C4A49A3312476 /* libRNCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCamera.a; sourceTree = "<group>"; };
@@ -476,6 +485,7 @@
 		C16B065D47604CBB9FAFE468 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		CA2B4E00B395630D9B880AA2 /* Pods-roamiApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roamiApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-roamiApp/Pods-roamiApp.release.xcconfig"; sourceTree = "<group>"; };
 		CDFBEB51AA4E4425892737F0 /* libRNSecureKeyStore.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSecureKeyStore.a; sourceTree = "<group>"; };
+		CE031A5A4EE544B481077BDA /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		D31A41A60B064E809DA3DF50 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		D64BD532F26A471A8663140B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		E07F7F31D6E6446D8B5FFE5A /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
@@ -510,6 +520,7 @@
 				D92DA4C02F884BEF9BCF1D1B /* libRNVectorIcons.a in Frameworks */,
 				32A447F3BA6E4F458BC37124 /* libRNSVG.a in Frameworks */,
 				22EE80CA9C519D716CFB86F6 /* libPods-roamiApp.a in Frameworks */,
+				8DCA7B3159B24CBDA9859AE7 /* libRNGoogleSignin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +565,14 @@
 			isa = PBXGroup;
 			children = (
 				00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12C6685C2252536200E5256A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12C668602252536200E5256A /* libRNGoogleSignin.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -655,6 +674,7 @@
 				B058CB55C8C2470A992A2793 /* libRNSVG.a */,
 				F3349B304B4C4B588E889A05 /* libRNVectorIcons-tvOS.a */,
 				E490C2CB71614CC09283EE87 /* libRNSVG-tvOS.a */,
+				9DE270A6E84241FE86FE1E51 /* libRNGoogleSignin.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -760,6 +780,7 @@
 				63FDB693B859466DB7EA72C6 /* BVLinearGradient.xcodeproj */,
 				8E2639541B3C498B90E53A13 /* RNVectorIcons.xcodeproj */,
 				367933CE55414816B9E4C9D9 /* RNSVG.xcodeproj */,
+				CE031A5A4EE544B481077BDA /* RNGoogleSignin.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -975,6 +996,10 @@
 					ProjectRef = E07F7F31D6E6446D8B5FFE5A /* RNGestureHandler.xcodeproj */;
 				},
 				{
+					ProductGroup = 12C6685C2252536200E5256A /* Products */;
+					ProjectRef = CE031A5A4EE544B481077BDA /* RNGoogleSignin.xcodeproj */;
+				},
+				{
 					ProductGroup = 7267261821BD275000F93E2C /* Products */;
 					ProjectRef = 773DD6E0E77044A2A9530A1A /* RNSecureKeyStore.xcodeproj */;
 				},
@@ -1035,6 +1060,13 @@
 			fileType = archive.ar;
 			path = "libRNGestureHandler-tvOS.a";
 			remoteRef = 12791E36224CD1AE00C5705E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		12C668602252536200E5256A /* libRNGoogleSignin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGoogleSignin.a;
+			remoteRef = 12C6685F2252536200E5256A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		12D3FFF22205BF4A006DB7C4 /* libRCTMGL.a */ = {
@@ -1418,13 +1450,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-roamiApp/Pods-roamiApp-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1524,6 +1560,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = roamiApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1534,6 +1571,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"/**",
+					"\"$(SRCROOT)/roamiApp\"",
 				);
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
@@ -1577,6 +1615,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = roamiApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1587,6 +1626,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"/**",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"/**",
+					"\"$(SRCROOT)/roamiApp\"",
 				);
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
