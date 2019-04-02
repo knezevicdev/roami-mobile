@@ -20,6 +20,8 @@ export default StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10,
         color: colors.WHITE,
+        justifyContent: "center",
+        alignItems: "center"
     },
     form: {
         backgroundColor: '#DDDDDD',

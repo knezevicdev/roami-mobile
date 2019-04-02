@@ -21,7 +21,7 @@ class VenueApi extends Api {
         };
 
         if(itemCategoryId != 0) data.itemCategoryId = itemCategoryId;
-        if(priceRange) data.priceRange = priceRange;
+        if(priceRange != 0) data.priceRange = priceRange;
 
         return await this.post('venue/search', data);
     };

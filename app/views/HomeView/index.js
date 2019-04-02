@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { PermissionsAndroid, Platform, View, PickerIOS, Text, Slider, Alert, StyleSheet } from "react-native";
+import { PermissionsAndroid, Platform, View, Text, Slider, Alert, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Formik } from 'formik';
 import { Header } from "../../components";
@@ -12,7 +12,6 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: 16,
         paddingVertical: 12,
         paddingHorizontal: 10,
         borderWidth: 1,
@@ -24,7 +23,6 @@ const pickerSelectStyles = StyleSheet.create({
         marginTop: 5
     },
     inputAndroid: {
-        fontSize: 16,
         paddingHorizontal: 10,
         paddingVertical: 8,
         borderWidth: 0.5,
@@ -105,27 +103,31 @@ export default class MainComponent extends Component {
     };
 
     search = async (itemCategoryId, priceRange, milesRange, latitude, longitude) => {
-        await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
-            console.log('res', res);
-            if(res.data && res.data.length > 0) {
-                this.setState({
-                    searchRequested: true
-                })
-                setTimeout(() => {
-                    this.props.navigation.navigate("Map", { 
-                        data: res.data, longitude, latitude, itemCategoryId, priceRange, milesRange 
-                    });
+        try {
+            await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
+                console.log('res', res);
+                if(res.data && res.data.length > 0) {
+                    this.setState({
+                        searchRequested: true
+                    })
+                    setTimeout(() => {
+                        this.props.navigation.navigate("Map", { 
+                            data: res.data, longitude, latitude, itemCategoryId, priceRange, milesRange 
+                        });
+                        this.setState({
+                            searchRequested: false
+                        });
+                    }, 5000);
+                } else {
+                    Alert.alert("No match!");
                     this.setState({
                         searchRequested: false
                     });
-                }, 5000);
-            } else {
-                Alert.alert("No match!");
-                this.setState({
-                    searchRequested: false
-                });
-            }
-        }));
+                }
+            }));
+        } catch(error) {
+            Alert.alert("Error while searching!");
+        }
     }
 
     change = (milesRange) => {
@@ -164,8 +166,8 @@ export default class MainComponent extends Component {
                     >   
                         <Formik
                             initialValues={{
-                                itemCategoryId: null,
-                                priceRange: null,
+                                itemCategoryId: '0',
+                                priceRange: '0',
                                 milesRange: 5
                             }}
                             onSubmit={values => this.search(
@@ -257,34 +259,3 @@ export default class MainComponent extends Component {
         );
     }
 }
-
-{/* 
-                        {/* <PickerIOS
-                            style={styles.select}
-                            selectedValue={this.state.itemCategoryId}
-                            onValueChange={(itemValue) =>
-                                this.setState({ itemCategoryId: itemValue })
-                            }
-                        >   
-                            <PickerIOS.Item label="Please select category" value="0"/>
-                            {
-                                (this.state.item_categorys || []).map((category) => {
-                                    return <PickerIOS.Item key={category.id} label={category.name} value={category.id} />
-                                })
-                            }
-                        </PickerIOS> */}
-                        
-                        {/* <PickerIOS 
-                            style={styles.select}
-                            selectedValue={this.state.priceRange}
-                            onValueChange={(itemValue) =>
-                                this.setState({ priceRange: itemValue })
-                            }
-                        >
-                            <PickerIOS.Item label="Please select price range" value="0"/>
-                            <PickerIOS.Item label="0 - 5" value="0-5"/>
-                            <PickerIOS.Item label="5 - 10" value="5-10"/>
-                            <PickerIOS.Item label="10 - 15" value="10-15"/>
-                            <PickerIOS.Item label="15 - 20" value="15-20"/>
-                            <PickerIOS.Item label="20+" value="20+"/>
-                        </PickerIOS> */}
