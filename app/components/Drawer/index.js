@@ -7,9 +7,14 @@ import { removeAccessToken } from '../../lib/auth';
 import LinearGradient from 'react-native-linear-gradient';
 import { colors } from '../../config';
 import styles from "./styles";
+import { GoogleSignin } from "react-native-google-signin";
+import { LoginManager } from 'react-native-fbsdk'
 
 export default class DrawerComponent extends Component {
-    logout = () => {
+    logout = async () => {
+        await GoogleSignin.revokeAccess();
+        await LoginManager.logOut();
+
         removeAccessToken().then(
             this.props.navigation.navigate('Login')
         )
