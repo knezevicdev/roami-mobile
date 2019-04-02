@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { View, Text, Slider, StyleSheet, Button, Alert } from "react-native";
+import { View, Text, Slider, StyleSheet, Platform, Alert } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Formik } from "formik";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
@@ -10,7 +10,6 @@ import { VenueApi } from '../../lib/api';
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: 16,
         paddingVertical: 12,
         paddingHorizontal: 10,
         borderWidth: 1,
@@ -22,7 +21,6 @@ const pickerSelectStyles = StyleSheet.create({
         marginTop: 5
     },
     inputAndroid: {
-        fontSize: 16,
         paddingHorizontal: 10,
         paddingVertical: 8,
         borderWidth: 0.5,
@@ -58,23 +56,6 @@ class MapComponent extends React.Component {
             .catch(error => {
                 console.log(error);
             });
-
-        if (Platform.OS === "android") {
-            await PermissionsAndroid.requestMultiple(
-                [
-                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                    PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
-                ],
-                {
-                    title: "Give Location Permission",
-                    message: "App needs location permission to find your position."
-                }
-            ).then(granted => {
-                console.log(granted);
-            }).catch(err => {
-                console.warn(err);
-            });
-        }
     }
 
     handleMenuOpen = (e) => {
@@ -112,6 +93,7 @@ class MapComponent extends React.Component {
     }
     render() {
         const { itemCategoryId, priceRange, milesRange } = this.props.navigation.state.params;
+        console.log('Miles Range', milesRange);
         return (
             <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <MapView
@@ -136,9 +118,7 @@ class MapComponent extends React.Component {
                 </MapView>
                 <View style={styles.search}>
                     <Text onPress={() => this.handleMenuOpen()} style={{ color: 'white' }} >
-                        {itemCategoryId == '0' ? 'No category selected.' : itemCategoryId} 
-                        {priceRange == '0' ? 'No price range selected.' : ` ${priceRange}$`}
-                        {` ${milesRange} miles`}
+                        {itemCategoryId == '0' ? 'No category' : itemCategoryId} - {priceRange == '0' ? 'No price range' : ` ${priceRange}$`} - {` ${milesRange} miles`}
                     </Text>
                 </View>
                 {
