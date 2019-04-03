@@ -7,6 +7,14 @@ import { storeAccessToken } from '../../lib/auth';
 import { UserApi } from '../../lib/api';
 import { colors } from '../../config';
 import styles from "./styles";
+import {
+  LoginButton,
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager
+} from "react-native-fbsdk";
+import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
+import { api } from "../../config";
 
 export default class LoginComponent extends Component {
     state = {
@@ -35,22 +43,79 @@ export default class LoginComponent extends Component {
             this.setState({
                 loginRequested: false
             });
+        }
+    }
+
+  componentDidMount() {
+    this.setupGoogleSignin();
+  }
+
+  googleAuth = async () => {
+    GoogleSignin.signIn()
+      .then(user => {
+        UserApi.thirdPartyAuth(
+          user.user.email,
+          null,
+          user.user.givenName ? user.user.givenName : null,
+          user.user.familyName ? user.user.familyName : null,
+          user.user.id
+        )
+          .then(response => {
+            storeAccessToken(response.data.token);
+            this.props.navigation.navigate("Home");
+          })
+          .catch(error => {
             Alert.alert("Your username or password is not valid.");
             console.log(error);
+          });
+      })
+      .catch(err => {
+        console.log("WRONG SIGNIN", err);
+      })
+      .done();
+  };
+
+  setupGoogleSignin = async () => {
+    try {
+      await GoogleSignin.hasPlayServices({ autoResolve: true });
+      await GoogleSignin.configure({
+        iosClientId: api.GOOGLE_IOS_CLIENT_ID,
+        webClientId: api.GOOGLE_WEB_CLIENT_ID,
+        offlineAccess: false
+      });
+    } catch (err) {
+      console.log("Google signin error", err.code, err.message);
+    }
+  };
+
+  registration = () => {
+    this.props.navigation.navigate("Register");
+  };
+
+  toReset = () => {
+    this.props.navigation.navigate("Reset");
+  };
+
+  async FBGraphRequest(fields, callback) {
+    const accessData = await AccessToken.getCurrentAccessToken();
+    const infoRequest = new GraphRequest(
+      "/me",
+      {
+        accessToken: accessData.accessToken,
+        parameters: {
+          fields: {
+            string: fields
+          }
         }
-    };
-
-    registration = () => {
-        this.props.navigation.navigate("Register");
-    }
-
-    toReset = () => {
-        this.props.navigation.navigate("Reset");
-    }
+      },
+      callback.bind(this)
+    );
+    new GraphRequestManager().addRequest(infoRequest).start();
+  }
 
     render() {
         return (
-            <SafeAreaView style={{flex: 1}}>
+            <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never', top: 'never' }}>
                 <ImageBackground 
                     style={styles.container}
                     source={require('../../../assets/images/background/backgroundImage.png')}
@@ -122,9 +187,51 @@ export default class LoginComponent extends Component {
                         <View style={styles.reset}>
                             <Text onPress={() => this.toReset()} style={styles.text}>Reset password</Text>
                         </View>
+                        <View style={{
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}>
+                        <GoogleSigninButton
+                            style={{ width: 197, height: 48, paddingBottom: 5 }}
+                            size={GoogleSigninButton.Size.Wide}
+                            color={GoogleSigninButton.Color.Dark}
+                            onPress={() => this.googleAuth()}
+                        />
+                        <LoginButton
+                            readPermissions={["public_profile email"]}
+                            onLoginFinished={(error, result) => {
+                            if (error) {
+                                console.log("login has error: " + result.error);
+                            } else if (result.isCancelled) {
+                                console.log("login is cancelled.");
+                            } else {
+                                this.FBGraphRequest(
+                                "id, email, picture.type(large)",
+                                this.FBLoginCallback
+                                );
+                            }
+                            }}
+                            onLogoutFinished={() => console.log("logout.")}
+                        />
+                        </View>
                     </View>
                 </ImageBackground>
             </SafeAreaView>
         );
     }
+  async FBLoginCallback(error, result) {
+    if (error) {
+      console.log(error);
+    } else {
+      UserApi.thirdPartyAuth(result.email, result.id)
+        .then(response => {
+          storeAccessToken(response.data.token);
+          this.props.navigation.navigate("Home");
+        })
+        .catch(error => {
+          Alert.alert("Your username or password is not valid.");
+          console.log(error);
+        });
+    }
+  }
 }

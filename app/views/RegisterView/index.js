@@ -47,7 +47,7 @@ export default class RegisterComponent extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{flex: 1}}>
+            <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never', top: 'never' }}>
                 <ImageBackground 
                         style={styles.container}
                         source={require('../../../assets/images/background/backgroundImage.png')}

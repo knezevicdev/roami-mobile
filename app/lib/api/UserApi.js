@@ -21,6 +21,19 @@ class UserApi extends Api {
         );
     };
 
+    static thirdPartyAuth = async (email, facebook_id = null, first_name = null, last_name = null, google_id = null, ) => {
+        let data = {
+            email
+        };
+
+        if(first_name) data.first_name = first_name;
+        if(last_name) data.last_name = last_name;
+        if(google_id) data.google_id = google_id;
+        if(facebook_id) data.facebook_id = facebook_id;
+
+        return this.post(`/thirdPartyAuth`, data);
+    };
+
     static resetRequest = async (email) => {
         return this.post('/forgot-password', {
                 email
