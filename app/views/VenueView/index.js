@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Text, ImageBackground, Image, View, TextInput, ScrollView } from 'react-native';
 import { SafeAreaView } from "react-navigation";
-import { Button } from '../../components';
-import { colors } from '../../config';
+import LinearGradient from "react-native-linear-gradient";
 import { VenueApi } from '../../lib/api';
 import styles from "./styles";
 
@@ -13,7 +12,7 @@ export default class VenueComponent extends Component {
             venue: null,
             items: null,
             infoActive: true,
-            itemActive: false
+            itemActive: false,
         };
     }
 
@@ -48,13 +47,22 @@ export default class VenueComponent extends Component {
 
     render() {
         if(!this.state.venue) return (<View><Text>Loading...</Text></View>);
+        console.log('venue', this.state.venue.image);
         return (
             <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <ScrollView>
                     <ImageBackground
                         style={styles.picture}
-                        source={require('../../../assets/images/background/backgroundImage.png')}
-                    />
+                        // source={require('../../../assets/images/background/backgroundImage.png')}
+                        placeName
+                        source={{ uri: this.state.venue.image}}
+                    >
+                        {
+                            this.state.venue.image ? 
+                                <Text></Text> 
+                            : <Text style={{ fontSize: 30}}>No image</Text>
+                        }
+                    </ImageBackground>
                     <View style={styles.venueNav}>
                         <Text onPress={() => this.setState({ infoActive: true, itemActive: false })} style={styles.venueTab}>Info</Text>
                         <Text onPress={() => this.setState({ infoActive: false, itemActive: true })} style={styles.venueTab}>Items</Text>
@@ -108,7 +116,18 @@ export default class VenueComponent extends Component {
                             }
                         </View>
                     }
-                    <Text style={styles.button} onPress={() => this.goBack()}>Go back</Text>
+                    <LinearGradient
+                        colors={['#FF8943', '#F74251']}
+                        style={styles.button}
+                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                    >
+                        <Text
+                            style={styles.button}
+                            onPress={() => this.goBack()}
+                        >
+                            GO BACK
+                        </Text>
+                    </LinearGradient>
                 </ScrollView>
             </SafeAreaView>
         );
