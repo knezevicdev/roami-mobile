@@ -46,11 +46,10 @@ class UserApi extends Api {
         return await this.post(`user`);
     }
 
-    static updateUser = async (first_name, last_name, email, password, newPassword, repeatedNewPassword ) => {
+    static updateUser = async (first_name, last_name, newPassword = null, repeatedNewPassword = null, password = null ) => {
         return this.put(`user`, {
                 first_name,
                 last_name,
-                email,
                 password,
                 newPassword,
                 repeatedNewPassword

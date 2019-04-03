@@ -129,8 +129,8 @@ export default class LoginComponent extends Component {
                     <View style={{ flex: 2, marginBottom: 40 }}>
                         <Formik
                             initialValues={{ 
-                                email: 'test@mail.com', 
-                                password:'test123'
+                                email: 'test@mail.si', 
+                                password:'testeri'
                             }}
                             onSubmit={values => this.login(values.email, values.password)}
                         >

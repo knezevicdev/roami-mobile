@@ -12,10 +12,8 @@ class Api {
             'Content-Type': 'application/json'
         };
 
-        console.log("token", token)
         if(token){
             const token = await getAccessToken();
-            console.log("tokesn", token)
             requestHeaders = {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,

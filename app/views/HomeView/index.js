@@ -41,7 +41,7 @@ export default class MainComponent extends Component {
         latitude: 0,
         loadedCoords: false,
         item_categorys: '',
-        searchRequested: false
+        searchRequested: false,
     };
 
     async componentDidMount() {
@@ -112,12 +112,17 @@ export default class MainComponent extends Component {
             await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
                 console.log('res', res);
                 if(res.data && res.data.length > 0) {
+                    const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
+
+                    const latDelta = (milesRange * 1609.34) / oneDegreeOfLatitudeInMeters;
+                    const lngDelta = (milesRange * 1609.34) / (oneDegreeOfLatitudeInMeters * Math.cos(latitude * (Math.PI / 180)));
+                    
                     this.setState({
-                        searchRequested: true
+                        searchRequested: true,
                     })
                     setTimeout(() => {
                         this.props.navigation.navigate("Map", { 
-                            data: res.data, longitude, latitude, itemCategoryId, priceRange, milesRange 
+                            data: res.data, longitude, latitude, itemCategoryId, priceRange, milesRange, latDelta, lngDelta 
                         });
                         this.setState({
                             searchRequested: false

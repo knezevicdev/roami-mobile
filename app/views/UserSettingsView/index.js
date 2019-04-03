@@ -20,28 +20,31 @@ export default class UserSettingsComponent extends Component {
         };
     }
 
-    updateUser = async (email, first_name, last_name, password, newPassword, repeatedNewPassword) => {
-        await UserApi.updateUser(email, first_name, last_name, password, newPassword, repeatedNewPassword)
-            .then((res) => {
-                if(res.status === 200) {
-                    this.setState({
-                        userUpdateRequest: true
-                    })
-                    setTimeout(() => {
-                        this.navigateToHome();
+    updateUser = async (first_name, last_name, newPassword, repeatedNewPassword, password) => {
+        console.log('info', first_name, last_name, newPassword, repeatedNewPassword, password);
+        if(newPassword && repeatedNewPassword && newPassword === repeatedNewPassword) {
+            await UserApi.updateUser(first_name, last_name, newPassword, repeatedNewPassword, password)
+                .then((res) => {
+                    if(res.status === 200) {
                         this.setState({
                             userUpdateRequest: true
                         })
-                    }, 4000);
-                } else {
-                    this.setState({
-                        registered: false
-                    })
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+                        setTimeout(() => {
+                            this.navigateToHome();
+                            this.setState({
+                                userUpdateRequest: true
+                            })
+                        }, 4000);
+                    } else {
+                        this.setState({
+                            registered: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     }
 
     navigateToHome = () => {
@@ -50,6 +53,7 @@ export default class UserSettingsComponent extends Component {
 
     async componentDidMount() {
         await UserApi.getUser().then(response => {
+            console.log('response', response)
             this.setState({
                 email: response.data.email,
                 first_name: response.data.first_name,
@@ -62,6 +66,7 @@ export default class UserSettingsComponent extends Component {
     }
 
     render() {
+        console.log('state', this.state.user)
         return (
             <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <Header
@@ -78,27 +83,25 @@ export default class UserSettingsComponent extends Component {
                     <View style={{ marginTop: 40}}>
                         <Formik
                             initialValues={{
-                                email: "test@mail.com",
-                                first_name: "Mitar",
-                                last_name: "Djakovic",
-                                password: "test1234",
-                                newPassword: "test12345",
-                                repeatedNewPassword: "test12346"
+                                email: "test@mail.si",
+                                first_name: "Mitarrrr",
+                                last_name: "Djakovicrrr",
+                                password: "testeri",
+                                newPassword: "testerii",
+                                repeatedNewPassword: "testerii"
                             }}
                             onSubmit={values => this.updateUser(
-                                values.email, 
                                 values.first_name,
                                 values.last_name,
-                                values.password,
                                 values.newPassword,
-                                values.repeatedNewPassword
+                                values.repeatedNewPassword,
+                                values.password,
                             )}
                         >
                             {({ values, handleChange, handleSubmit }) => (
                                 <Fragment>
                                     <Text style={{ paddingLeft: 30, marginTop: 5 }}>Email</Text>
                                     <TextInput
-                                        onChangeText={handleChange('email')}
                                         value={values.email}
                                         placeholder="Enter email"
                                         placeholderTextColor="black"
@@ -123,22 +126,23 @@ export default class UserSettingsComponent extends Component {
                                         style={styles.input}
                                         placeholderTextColor="white"
                                     />
-                                    <Text style={{ paddingLeft: 30, marginTop: 5 }}>Old password</Text>
-                                    <TextInput
-                                        onChangeText={handleChange('password')}
-                                        value={values.password}
-                                        placeholder="Enter old password"
-                                        placeholderTextColor="black"
-                                        secureTextEntry={true}
-                                        style={styles.input}
-                                        placeholderTextColor="white"
-                                    />
+                                    {this.state.user.hasPassword ? <Text style={{ paddingLeft: 30, marginTop: 5 }}>Old password</Text> : null}
+                                    {
+                                        this.state.user.hasPassword ? 
+                                        <TextInput
+                                            onChangeText={handleChange('password')}
+                                            value={values.password}
+                                            placeholder="Enter old password"
+                                            secureTextEntry={true}
+                                            style={styles.input}
+                                            placeholderTextColor="white"
+                                        /> : null
+                                    }
                                     <Text style={{ paddingLeft: 30, marginTop: 5 }}>New password</Text>
                                     <TextInput
                                         onChangeText={handleChange('newPassword')}
                                         value={values.newPassword}
                                         placeholder="Enter new password"
-                                        placeholderTextColor="black"
                                         secureTextEntry={true}
                                         style={styles.input}
                                         placeholderTextColor="white"
@@ -148,7 +152,7 @@ export default class UserSettingsComponent extends Component {
                                         onChangeText={handleChange('repeatedNewPassword')}
                                         value={values.repeatedNewPassword}
                                         placeholder="Repeat new password"
-                                        placeholderTextColor="black"
+                                        placeholderTextColor="white"
                                         secureTextEntry={true}
                                         style={{
                                             marginBottom: 30,

@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
-import { View, Text, Slider, StyleSheet, Platform, Alert } from "react-native";
+import { View, Text, Slider, StyleSheet, Alert } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Formik } from "formik";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import Geolocation from "react-native-geolocation-service";
 import LinearGradient from "react-native-linear-gradient";
 import RNPickerSelect from 'react-native-picker-select';
 import styles from "./styles";
@@ -40,6 +41,8 @@ class MapComponent extends React.Component {
             searchOpen: false,
             item_categorys: '',
             searchRequested: false,
+            latDelta: '',
+            lngDelta: ''
         }
     }
     onMarkerPress = (marker) => (event) => {
@@ -56,6 +59,8 @@ class MapComponent extends React.Component {
             .catch(error => {
                 console.log(error);
             });
+
+        
     }
 
     handleMenuOpen = (e) => {
@@ -74,9 +79,17 @@ class MapComponent extends React.Component {
                 searchRequested: true
             });
             if(res.data && res.data.length > 0) {
+                const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
+
+                const latDelta = (milesRange * 1609.34) / oneDegreeOfLatitudeInMeters;
+                const lngDelta = (milesRange * 1609.34) / (oneDegreeOfLatitudeInMeters * Math.cos(latitude * (Math.PI / 180)));
+                
                 this.setState({
                     searchOpen: false,
+                    lngDelta,
+                    latDelta
                 });
+                
                 setTimeout(() => {
                     this.props.navigation.navigate("Map");
                     this.setState({
@@ -89,11 +102,10 @@ class MapComponent extends React.Component {
                     searchRequested: false
                 });
             }
-        }));
+        })); 
     }
     render() {
-        const { itemCategoryId, priceRange, milesRange } = this.props.navigation.state.params;
-        console.log('Miles Range', milesRange);
+        const { itemCategoryId, priceRange, milesRange, latDelta, lngDelta } = this.props.navigation.state.params;
         return (
             <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <MapView
@@ -102,8 +114,8 @@ class MapComponent extends React.Component {
                     region={{
                         latitude: this.props.navigation.state.params.latitude,
                         longitude: this.props.navigation.state.params.longitude,
-                        latitudeDelta: 0.015,
-                        longitudeDelta: 0.0121,
+                        latitudeDelta: parseFloat(this.state.latDelta) || latDelta,
+                        longitudeDelta: parseFloat(this.state.lngDelta) || lngDelta
                     }}
                 >
                     {

@@ -2,29 +2,26 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../config";
 
 export default StyleSheet.create({
-    container: {
-        
-    },
     button: {
-        backgroundColor: colors.BUTTON_TRANSPARENT_COLOR,
         marginHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 10,
+        color: "#ffffff",
+        paddingTop: 5,
+        paddingBottom: 5,
         borderRadius: 10,
-        marginBottom: 5,
-        color: colors.WHITE,
-        textAlign: 'center'
     },
     venue: {
         fontSize: 20,
     },
     picture: {
         width: '100%',
-        height: 200
+        height: 200,
+        justifyContent: 'center', 
+        alignItems: 'center'
     },
     venueNav: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.WHITE,
         display: 'flex',
         flexWrap: 'wrap', 
         alignItems: 'flex-start',
@@ -63,7 +60,4 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection:'row',
     },
-    item: {
-
-    }
 });
