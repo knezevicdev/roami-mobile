@@ -8,6 +8,7 @@ import ResetView from '../../views/ResetView';
 import VenueView from '../../views/VenueView';
 import MapView from '../../views/MapView';
 import UserSettingsView from '../../views/UserSettingsView';
+import DetailedMapView from '../../views/DetailedMapView';
 import { Drawer } from '../../components'
 
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
@@ -43,6 +44,7 @@ const AppNavigator = createSwitchNavigator({
     Reset: { screen: ResetView },
     Venue: { screen: VenueView },
     Map: { screen: MapView },
+    DetailedMap: { screen: DetailedMapView },
     UserSettings: { screen: UserSettingsView }
 });
 

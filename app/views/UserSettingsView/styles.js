@@ -43,5 +43,5 @@ export default StyleSheet.create({
         color: '#fff',
         position: 'absolute',
         fontSize: 20
-    }
+    },
 });
