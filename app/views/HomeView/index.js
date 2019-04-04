@@ -122,7 +122,7 @@ export default class MainComponent extends Component {
                         this.setState({
                             searchRequested: false
                         });
-                    }, 5000);
+                    }, 1000);
                 } else {
                     Alert.alert("No match!");
                     this.setState({
