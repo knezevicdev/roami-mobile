@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "358499972961",
+    "firebase_url": "https://roami-236313.firebaseio.com",
+    "project_id": "roami-236313",
+    "storage_bucket": "roami-236313.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358499972961:android:3b154dc8390ee250",
+        "android_client_info": {
+          "package_name": "com.roami.alcohol.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5CLcLP8rAMeQ6X4SOr-UC6lc9pEXYZSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358499972961-6q6hn2sujnibufir7f5im6phorsl0n8f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "358499972961-frthsq2s7gtddnp7bomhnp9rps9gaqca.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.decem.roamiapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
