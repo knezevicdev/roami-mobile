@@ -257,7 +257,7 @@ export default class VenueComponent extends Component {
                     style={styles.circle}
                     onPress={() => this.toMap()}
                 >
-                    <MaterialIcon onPress={() => this.toMap()} name={'explore'} size={45} color="white"  />
+                    <MaterialIcon onPress={() => this.toMap()} name={'explore'} size={35} color="white"  />
                 </LinearGradient>
             </SafeAreaView>
         );

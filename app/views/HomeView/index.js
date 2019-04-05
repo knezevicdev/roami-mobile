@@ -105,7 +105,7 @@ export default class MainComponent extends Component {
     search = async (itemCategoryId, priceRange, milesRange, latitude, longitude) => {
         try {
             await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
-                console.log('res', res);
+                console.log('res1 ===>', res);
                 if(res.data && res.data.length > 0) {
                     const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
 

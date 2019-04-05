@@ -27,7 +27,8 @@ const DrawerNavigator = createDrawerNavigator({
             },
             UserSettings: {
                 screen: UserSettingsView,
-            }
+            },
+            DetailedMap: { screen: DetailedMapView },
         }, {
             headerMode:'none',
         })
