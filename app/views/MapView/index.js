@@ -38,11 +38,14 @@ class MapComponent extends React.Component {
     constructor() {
         super();
         this.state = {
+            searchLoading: false,
             searchOpen: false,
-            item_categorys: '',
+            firstRequest: true,
             searchRequested: false,
+            item_categorys: '',
             latDelta: '',
-            lngDelta: ''
+            lngDelta: '',
+            data: ''
         }
     }
     onMarkerPress = (marker) => (event) => {
@@ -76,7 +79,10 @@ class MapComponent extends React.Component {
     search = async (itemCategoryId, priceRange, milesRange, latitude, longitude) => {
         await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
             this.setState({
-                searchRequested: true
+                searchRequested: true,
+                firstRequest: false,
+                data: res.data,
+                searchLoading: true
             });
             if(res.data && res.data.length > 0) {
                 const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
@@ -87,15 +93,16 @@ class MapComponent extends React.Component {
                 this.setState({
                     searchOpen: false,
                     lngDelta,
-                    latDelta
+                    latDelta,
+                    // searchLoading: false
                 });
-                
+
                 setTimeout(() => {
-                    this.props.navigation.navigate("Map");
                     this.setState({
-                        searchRequested: false
-                    });
-                }, 1000);
+                        searchLoading: false
+                    })
+                }, 2000)
+                
             } else {
                 Alert.alert("No match!");
                 this.setState({
@@ -119,7 +126,16 @@ class MapComponent extends React.Component {
                     }}
                 >
                     {
-                        this.props.navigation.state.params.data ? this.props.navigation.state.params.data.map(marker => (
+                        this.state.firstRequest ? this.props.navigation.state.params.data.map(marker => (
+                            <Marker key={marker.id} 
+                                    coordinate={{
+                                    latitude: marker.position.coordinates[1],
+                                    longitude: marker.position.coordinates[0]
+                            }} onPress={this.onMarkerPress(marker)}/>
+                        )) : <></>
+                    }
+                    {
+                        this.state.searchRequested ? this.state.data.map(marker => (
                             <Marker key={marker.id} 
                                     coordinate={{
                                     latitude: marker.position.coordinates[1],
@@ -134,7 +150,7 @@ class MapComponent extends React.Component {
                     </Text>
                 </View>
                 {
-                    this.state.searchRequested ?
+                    this.state.searchLoading ?
                         <View style={styles.loading}>
                             <Text style={styles.loadingText}>SEARCHING...</Text>
                         </View>

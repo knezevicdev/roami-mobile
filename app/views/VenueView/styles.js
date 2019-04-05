@@ -149,14 +149,14 @@ export default StyleSheet.create({
         paddingBottom: 5
     },
     circle: {
-        width: 80,
-        height: 80,
+        width: 60,
+        height: 60,
         backgroundColor: colors.BLUE_SEARCH,
         alignSelf:'flex-end',
         position: 'absolute',
-        bottom: 20,
-        right: 20,
-        borderRadius: 40,
+        bottom: 10,
+        right: 10,
+        borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center',
     }
