@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ImageBackground, Image, View, TextInput, ScrollView } from 'react-native';
+import { Text, ImageBackground, Image, View, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from "react-navigation";
 import LinearGradient from "react-native-linear-gradient";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
@@ -32,7 +32,6 @@ export default class VenueComponent extends Component {
         await VenueApi.venueRequest(id).then(response => {
             this.setState({ venue: response.data });
         }).catch(error => {
-            Alert.alert(JSON.stringify(error));
             console.log(error)
         });
 
@@ -67,8 +66,7 @@ export default class VenueComponent extends Component {
     }
 
     render() {
-        if(!this.state.venue) return (<View><Text>Loading...</Text></View>);
-        console.log('venue', this.state.venue);
+        if(!this.state.venue) return (<View style={{ flex: 1, alignItem: 'center', justifyContent: 'center'}}><ActivityIndicator size="large" color="#0000ff" /></View>);
         return (
             <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
                 <ScrollView>
@@ -111,35 +109,39 @@ export default class VenueComponent extends Component {
                                     <Text style={styles.infoText}>{this.state.venue.address}</Text>
                                     <Text>{this.state.venue.zip} {this.state.venue.city.name}, {this.state.venue.region.name}</Text>
                                 </View>
-                                <View>
-                                    <Text style={styles.infoTitle}>Working period:</Text>
-                                    {
-                                        (this.state.venue.workingPeriods || []).map(period => {
-                                            if(period.day === 0) {
-                                                period.day = "Monday";
-                                            } else if (period.day === 1) {
-                                                period.day = "Tuesday";
-                                            } else if (period.day === 2) {
-                                                period.day = "Wednesday";
-                                            } else if (period.day === 3) {
-                                                period.day = "Thursday";
-                                            } else if (period.day === 4) {
-                                                period.day = "Friday";
-                                            } else if (period.day === 5) {
-                                                period.day = "Saturday";
-                                            } else if (period.day === 6) {
-                                                period.day = "Sunday";
-                                            }
-                                            return(
-                                                <View key={period.id}>
-                                                    <Text>{period.day}</Text>
-                                                    <Text style={{ fontSize: 16}}>Open {period.open}</Text>
-                                                    <Text style={{ fontSize: 16}}>Close {period.close}</Text>
-                                                </View>
-                                            )
-                                        })
-                                    }
-                                </View>
+                                {
+                                    this.state.venue.workingPeriods && this.state.venue.workingPeriods.length ?
+                                    <View>
+                                        <Text style={styles.infoTitle}>Working period:</Text>
+                                        {
+                                            (this.state.venue.workingPeriods || []).map(period => {
+                                                if(period.day === 0) {
+                                                    period.day = "Monday";
+                                                } else if (period.day === 1) {
+                                                    period.day = "Tuesday";
+                                                } else if (period.day === 2) {
+                                                    period.day = "Wednesday";
+                                                } else if (period.day === 3) {
+                                                    period.day = "Thursday";
+                                                } else if (period.day === 4) {
+                                                    period.day = "Friday";
+                                                } else if (period.day === 5) {
+                                                    period.day = "Saturday";
+                                                } else if (period.day === 6) {
+                                                    period.day = "Sunday";
+                                                }
+                                                return(
+                                                    <View key={period.id}>
+                                                        <Text>{period.day}</Text>
+                                                        <Text style={{ fontSize: 16}}>Open {period.open}</Text>
+                                                        <Text style={{ fontSize: 16}}>Close {period.close}</Text>
+                                                    </View>
+                                                )
+                                            })
+                                        }
+                                    </View> : 
+                                    <></>
+                                }
                                 {/* <View 
                                     style={{
                                         position: 'absolute',
@@ -174,34 +176,47 @@ export default class VenueComponent extends Component {
                                     </MapView>
                                 </View> */}
                             </View>
-                            <View style={styles.contact}>
-                                <View style={styles.contactTab}>
-                                    <Text onPress={() => this.setState({phonesOpen: !this.state.phonesOpen})} style={styles.infoTitle}>
-                                        {this.state.venue.phones.length > 1 ? "Phones" : "Phone"}
-                                    </Text>
+                            {
+                                (this.state.venue.phones && this.state.venue.phones.length) 
+                                || (this.state.venue.emails && this.state.venue.emails.length) ?
+                                <View style={styles.contact}>
                                     {
-                                        this.state.phonesOpen ?
-                                            <Text style={styles.contactItem}>{this.state.venue.phones[0].phone}</Text>
-                                        :
-                                        (this.state.venue.phones || []).map(phone => 
-                                            <Text style={styles.contactItem} key={phone.id}>{phone.phone}</Text>
-                                        )
+                                        this.state.venue.phones && this.state.venue.phones.length ? 
+                                            <View style={styles.contactTab}>
+                                                <Text onPress={() => this.setState({phonesOpen: !this.state.phonesOpen})} style={styles.infoTitle}>
+                                                    {this.state.venue.phones.length > 1 ? "Phones" : "Phone"}
+                                                </Text>
+                                                {
+                                                    this.state.phonesOpen ?
+                                                        <Text style={styles.contactItem}>{this.state.venue.phones[0].phone}</Text>
+                                                    :
+                                                    (this.state.venue.phones || []).map(phone => 
+                                                        <Text style={styles.contactItem} key={phone.id}>{phone.phone}</Text>
+                                                    )
+                                                }
+                                            </View> :
+                                            <></>
                                     }
-                                </View>
-                                <View style={styles.contactTab}>
-                                    <Text onPress={() => this.setState({emailsOpen: !this.state.emailsOpen})} style={styles.infoTitle}>
-                                        {this.state.venue.emails.length > 1 ? "Emails" : "Email"}
-                                    </Text>
                                     {
-                                        this.state.emailsOpen ?
-                                            <Text style={styles.contactItem}>{this.state.venue.emails[0].email}</Text>
-                                        :
-                                        (this.state.venue.emails || []).map(email => 
-                                            <Text style={styles.contactItem} key={email.id}>{email.email}</Text>
-                                        )
+                                        this.state.venue.emails && this.state.venue.emails.length ? 
+                                        <View style={styles.contactTab}>
+                                            <Text onPress={() => this.setState({emailsOpen: !this.state.emailsOpen})} style={styles.infoTitle}>
+                                                {this.state.venue.emails.length > 1 ? "Emails" : "Email"}
+                                            </Text>
+                                            {
+                                                this.state.emailsOpen ?
+                                                    <Text style={styles.contactItem}>{this.state.venue.emails[0].email}</Text>
+                                                :
+                                                (this.state.venue.emails || []).map(email => 
+                                                    <Text style={styles.contactItem} key={email.id}>{email.email}</Text>
+                                                )
+                                            }
+                                        </View> :
+                                        <></>
                                     }
-                                </View>
-                            </View>
+                                </View> :
+                                <></>
+                            }
                             <View style={styles.social}>
                                 <Text style={styles.infoTitle}>Social</Text>
                                 <Text>Description {this.state.venue.description}</Text>
