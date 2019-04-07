@@ -36,8 +36,8 @@
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data
-                android:host="gourban-staging.eu.auth0.com"
-                android:pathPrefix="/android/${applicationId}/callback"
+                android:host="roami-app"
+                android:pathPrefix=""
     	        android:scheme="${applicationId}" />
          	</intent-filter>
       	</activity>

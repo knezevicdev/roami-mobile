@@ -1,20 +1,44 @@
 import React, { Component } from 'react';
-import { ImageBackground, Image, Text, View } from 'react-native';
+import { ImageBackground, Image, View, Linking } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { getAccessToken } from '../../lib/auth';
 import styles from "./styles";
+
+//REGEX
+const resetPasswordLinkRegex = /com.roami.alcohol.app:\/\/roami-app\/(.*)/g;
 
 export default class SplashView extends Component {
 
     async componentDidMount() {
         const accessToken = await getAccessToken();
-        setTimeout(() => {
-            if (accessToken) {
-                this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Home' }))
-            } else {
-                this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
+        let initialUrl = null;
+
+        try {
+            initialUrl = await Linking.getInitialURL();
+        } catch(error) {
+            console.log("Failed to fetch initial URL");
+        }
+
+        if(initialUrl) {
+            // Reset password view
+            if(resetPasswordLinkRegex.test(initialUrl)) {
+                resetPasswordLinkRegex.lastIndex = 0;
+                const urlParams = resetPasswordLinkRegex.exec(initialUrl);
+
+                if(urlParams) {
+                    const email = urlParams[1];
+                    return this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'ResetPassword', params: {
+                        email: email
+                    }}));
+                }
             }
-        }, 2000);
+        }
+
+        if (accessToken) {
+            this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Home' }))
+        } else {
+            this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
+        }
     }
 
     render() {

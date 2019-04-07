@@ -93,7 +93,7 @@ export default class LoginComponent extends Component {
   };
 
   toReset = () => {
-    this.props.navigation.navigate("Reset");
+    this.props.navigation.navigate("ForgotPassword");
   };
 
   async FBGraphRequest(fields, callback) {
@@ -129,7 +129,7 @@ export default class LoginComponent extends Component {
                     <View style={{ flex: 2, marginBottom: 40 }}>
                         <Formik
                             initialValues={{ 
-                                email: 'test@mail.si', // test@mail.commm, test@mail.si
+                                email: 'gligorije.nikolic989@gmail.com', // test@mail.commm, test@mail.si
                                 password:'testeri' // test123456, testeri
                             }}
                             onSubmit={values => this.login(values.email, values.password)}
