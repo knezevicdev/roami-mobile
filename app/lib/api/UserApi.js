@@ -34,7 +34,7 @@ class UserApi extends Api {
         return this.post(`/thirdPartyAuth`, data);
     };
 
-    static resetRequest = async (email) => {
+    static forgotPasswordRequest = async (email) => {
         return this.post('/forgot-password', {
                 email
             }, 

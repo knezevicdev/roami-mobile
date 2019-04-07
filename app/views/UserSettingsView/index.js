@@ -66,7 +66,6 @@ export default class UserSettingsComponent extends Component {
     }
 
     render() {
-        console.log('state', this.state.user)
         return (
             <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never' }}>
                 <Header

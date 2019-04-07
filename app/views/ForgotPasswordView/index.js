@@ -13,8 +13,8 @@ export default class ResetComponent extends Component {
         resetRequested: false
     };
 
-    reset = async (email) => {
-        await UserApi.resetRequest(email)
+    forgotPasswordRequest = async (email) => {
+        await UserApi.forgotPasswordRequest(email)
             .then((res) => {
                 if(res.status === 200) {
                     this.setState({
@@ -58,7 +58,7 @@ export default class ResetComponent extends Component {
                             initialValues={{
                                 email: ''
                             }}
-                            onSubmit={values => this.reset(values.email)}
+                            onSubmit={values => this.forgotPasswordRequest(values.email)}
                         >
                             {({ values, handleChange, handleSubmit }) => (
                                 <Fragment>

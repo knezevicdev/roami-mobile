@@ -2,9 +2,10 @@ import React from 'react';
 import { createDrawerNavigator, createSwitchNavigator, createStackNavigator, createBottomTabNavigator, } from 'react-navigation';
 import SplashView from '../../views/SplashView';
 import LoginView from '../../views/LoginView';
+import ResetPasswordView from '../../views/ResetPasswordView';
 import HomeView from '../../views/HomeView';
 import RegisterView from '../../views/RegisterView';
-import ResetView from '../../views/ResetView';
+import ForgotPasswordView from '../../views/ForgotPasswordView';
 import VenueView from '../../views/VenueView';
 import MapView from '../../views/MapView';
 import UserSettingsView from '../../views/UserSettingsView';
@@ -29,6 +30,7 @@ const DrawerNavigator = createDrawerNavigator({
                 screen: UserSettingsView,
             },
             DetailedMap: { screen: DetailedMapView },
+            ResetPassword: { screen: ResetPasswordView }
         }, {
             headerMode:'none',
         })
@@ -42,14 +44,15 @@ const AppNavigator = createSwitchNavigator({
     Login: { screen: LoginView },
     Drawer: { screen: DrawerNavigator },
     Register: { screen: RegisterView },
-    Reset: { screen: ResetView },
+    ResetPassword: { screen: ResetPasswordView },
+    ForgotPassword: { screen: ForgotPasswordView },
     Venue: { screen: VenueView },
     Map: { screen: MapView },
     DetailedMap: { screen: DetailedMapView },
     UserSettings: { screen: UserSettingsView }
 });
 
-const outerScreens = ['Splash', 'Login', 'Home', 'Register', 'Reset'];
+const outerScreens = ['Splash', 'Login', 'Home', 'Register', 'ForgotPassword', "ResetPassword"];
 
 const middleware = createReactNavigationReduxMiddleware(
     'root',
