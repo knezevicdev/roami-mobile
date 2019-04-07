@@ -1,5 +1,5 @@
 import React from 'react';
-import { createDrawerNavigator, createSwitchNavigator, createStackNavigator, createBottomTabNavigator, } from 'react-navigation';
+import { createDrawerNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import SplashView from '../../views/SplashView';
 import LoginView from '../../views/LoginView';
 import ResetPasswordView from '../../views/ResetPasswordView';

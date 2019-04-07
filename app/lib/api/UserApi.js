@@ -42,6 +42,15 @@ class UserApi extends Api {
         );
     };
 
+    static resetPassword = async (token, newPassword, repeatedNewPassword) => {
+        return this.post('/reset-password', {
+                token, newPassword, repeatedNewPassword
+            }, 
+            false
+        );
+    };
+
+
     static getUser = async () => {
         return await this.post(`user`);
     }

@@ -26,9 +26,9 @@ export default class SplashView extends Component {
                 const urlParams = resetPasswordLinkRegex.exec(initialUrl);
 
                 if(urlParams) {
-                    const email = urlParams[1];
+                    const token = urlParams[1];
                     return this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'ResetPassword', params: {
-                        email: email
+                        token
                     }}));
                 }
             }
