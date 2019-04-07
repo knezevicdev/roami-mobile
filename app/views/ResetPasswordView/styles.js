@@ -7,14 +7,26 @@ export default StyleSheet.create({
     },
     text: {
         alignSelf: 'center',
-        textAlign: 'center',
-        color: colors.WHITE,
+        color: colors.WHITE
+    },
+    logoContainer: {
+        height: "30%",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    labelContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0
+    },
+    button: {
+        marginHorizontal: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingVertical: 10,
         borderRadius: 10,
         marginBottom: 5,
-        width: '80%',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     input: {
         backgroundColor: colors.WHITE_TRANSPARENT,
@@ -22,26 +34,15 @@ export default StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 30,
         marginBottom: 5,
-        backgroundColor: colors.GRAY_TEXT,
-        color: colors.WHITE,
-        paddingLeft: 20
+        paddingLeft: 20,
+        color: "#ffffff"
     },
-    loading: {
-        flex: 1,
-        backgroundColor: colors.BUTTON_TRANSPARENT_COLOR,
-        width: '100%',
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        zIndex: 1000,
-        alignItems: 'center',
-        justifyContent: 'center',
+    reset: {
+        color: colors.BLUE_LIGHT,
+        paddingTop: 10,
+        paddingBottom: 10
     },
-    loadingText: {
-        color: '#fff',
-        position: 'absolute',
-        fontSize: 20
-    },
+    buttonText: {
+        color: colors.WHITE
+    }
 });

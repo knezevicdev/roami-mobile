@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Text, ImageBackground, Image, View, TextInput, Alert, Linking } from 'react-native';
+import { Text, ImageBackground, Image, View, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from "react-navigation";
 import { Formik } from 'formik';
 import LinearGradient from 'react-native-linear-gradient';
@@ -22,9 +22,9 @@ export default class ResetPasswordComponent extends Component {
         }
     }
 
-    resetPassword = async (token, password) => {
+    resetPassword = async (newPassword, repeatedNewPassword) => {
         try {
-            await UserApi.resetPasswordRequest(token, password).then(response => {
+            await UserApi.resetPassword(this.state.token, newPassword, repeatedNewPassword).then(response => {
                 this.setState({
                     resetPasswordRequested: true
                 })
@@ -49,7 +49,6 @@ export default class ResetPasswordComponent extends Component {
     render() {
         return (
             <SafeAreaView style={{flex: 1}} forceInset={{ bottom: 'never', top: 'never' }}>
-                <Text>{this.state.token}</Text>
                 <ImageBackground 
                     style={styles.container}
                     source={require('../../../assets/images/background/backgroundImage.png')}
@@ -72,7 +71,7 @@ export default class ResetPasswordComponent extends Component {
                                 <Fragment>
                                     <TextInput
                                         value={values.password} 
-                                        onChangeText={handleChange('password')}
+                                        onChangeText={handleChange('newPassword')}
                                         placeholder="New password"
                                         secureTextEntry={true}
                                         placeholderTextColor="white"
@@ -80,7 +79,7 @@ export default class ResetPasswordComponent extends Component {
                                     />
                                     <TextInput
                                         value={values.password} 
-                                        onChangeText={handleChange('password')}
+                                        onChangeText={handleChange('repeatedNewPassword')}
                                         placeholder="Repeat new password"
                                         secureTextEntry={true}
                                         placeholderTextColor="white"
