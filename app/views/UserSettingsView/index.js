@@ -82,12 +82,12 @@ export default class UserSettingsComponent extends Component {
                     <View style={{ marginTop: 40}}>
                         <Formik
                             initialValues={{
-                                email: "test@mail.si",
-                                first_name: "Mitarrrr",
-                                last_name: "Djakovicrrr",
-                                password: "testeri",
-                                newPassword: "testerii",
-                                repeatedNewPassword: "testerii"
+                                email: "",
+                                first_name: "",
+                                last_name: "",
+                                password: "",
+                                newPassword: "",
+                                repeatedNewPassword: ""
                             }}
                             onSubmit={values => this.updateUser(
                                 values.first_name,
