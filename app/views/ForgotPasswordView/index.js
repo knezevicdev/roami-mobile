@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Formik } from 'formik';
-import { Text, ImageBackground, Image, View, TextInput } from 'react-native';
+import { Text, ImageBackground, Image, View, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from "react-navigation";
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
@@ -32,6 +32,7 @@ export default class ResetComponent extends Component {
                 }
             })
             .catch((error) => {
+                Alert.alert(error.response.data.message);
                 console.log(error);
             })
     }
@@ -103,7 +104,7 @@ export default class ResetComponent extends Component {
                                             style={{color: "#ffffff"}}
                                             onPress={() => this.toLogin()}
                                         >
-                                            LOGIN
+                                            BACK TO LOGIN
                                         </Text>
                                     </LinearGradient>
                                 </Fragment>

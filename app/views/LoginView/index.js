@@ -36,8 +36,8 @@ export default class LoginComponent extends Component {
                 this.setState({
                     loginRequested: false
                 });
-                Alert.alert("Your username or password is not valid.");
-                console.log(error);
+                Alert.alert(error.response.data.message);
+                console.log(error.response.data.message);
             });
         } catch (error) {
             this.setState({
