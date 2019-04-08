@@ -23,7 +23,7 @@ export default class RegisterComponent extends Component {
                         registerRequested: true
                     });
 
-                    Alert.alert("Successfully registered!");
+                    Alert.alert("Successfully registered, please confirm your email address!");
                     setTimeout(() => {
                         this.props.navigation.navigate("Login");
                     }, 1000)
@@ -135,7 +135,7 @@ export default class RegisterComponent extends Component {
                                             style={{ color: colors.WHITE }}
                                             onPress={() => this.toLogin()} 
                                         >
-                                            LOGIN
+                                            BACK TO LOGIN
                                         </Text>
                                     </LinearGradient>
                                 </Fragment>
