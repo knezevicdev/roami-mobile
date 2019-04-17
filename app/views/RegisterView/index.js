@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-navigation";
 import { colors } from '../../config';
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class RegisterComponent extends Component {
     state = {
@@ -15,14 +16,13 @@ export default class RegisterComponent extends Component {
     };
 
     register = async (first_name, last_name, email, password) => {
+        this.setState({
+            registered: true,
+            registerRequested: true
+        });
         await UserApi.registerRequest(first_name, last_name, email, password)
             .then((res) => {
                 if(res.status === 200) {
-                    this.setState({
-                        registered: true,
-                        registerRequested: true
-                    });
-
                     Alert.alert("Successfully registered, please confirm your email address!");
                     setTimeout(() => {
                         this.props.navigation.navigate("Login");
@@ -83,6 +83,8 @@ export default class RegisterComponent extends Component {
                                         placeholder="Enter first name"
                                         placeholderTextColor="white"
                                         style={styles.input}
+                                        onSubmitEditing={() => { this.lastNameInput.focus(); }}
+                                        blurOnSubmit={false}
                                     />
                                     <TextInput
                                         onChangeText={handleChange('last_name')}
@@ -90,6 +92,9 @@ export default class RegisterComponent extends Component {
                                         placeholder="Enter last name"
                                         placeholderTextColor="white"
                                         style={styles.input}
+                                        ref={(input) => { this.lastNameInput = input; }}
+                                        onSubmitEditing={() => { this.emailInput.focus(); }}
+                                        blurOnSubmit={false}
                                     />
                                     <TextInput
                                         onChangeText={handleChange('email')}
@@ -101,6 +106,9 @@ export default class RegisterComponent extends Component {
                                         textContentType="emailAddress"
                                         autoCapitalize="none"
                                         style={styles.input}
+                                        ref={(input) => { this.emailInput = input; }}
+                                        onSubmitEditing={() => { this.passwordInput.focus(); }}
+                                        blurOnSubmit={false}
                                     />
                                     <TextInput
                                         onChangeText={handleChange('password')}
@@ -109,35 +117,39 @@ export default class RegisterComponent extends Component {
                                         placeholderTextColor="white"
                                         style={styles.input}
                                         secureTextEntry={true}
+                                        ref={(input) => { this.passwordInput = input; }}
+                                        onSubmitEditing={handleSubmit}
                                     />
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                    >
-                                        <Text
-                                            containerStyles={styles.button}
-                                            style={{ color: colors.WHITE }}
-                                            onPress={handleSubmit}
+                                    <TouchableOpacity onPress={handleSubmit}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                         >
-                                            {
-                                                this.state.registerRequested ? "REGISTERING" : "REGISTER"
-                                            }
-                                        </Text>
-                                    </LinearGradient>
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                    >
-                                        <Text
-                                            containerStyles={styles.button}
-                                            style={{ color: colors.WHITE }}
-                                            onPress={() => this.toLogin()} 
+                                            <Text
+                                                containerStyles={styles.button}
+                                                style={{ color: colors.WHITE }}
+                                            >
+                                                {
+                                                    this.state.registerRequested ? "REGISTERING" : "REGISTER"
+                                                }
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.toLogin()} >
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                         >
-                                            BACK TO LOGIN
-                                        </Text>
-                                    </LinearGradient>
+                                            <Text
+                                                containerStyles={styles.button}
+                                                style={{ color: colors.WHITE }}
+                                            >
+                                                BACK TO LOGIN
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
                                 </Fragment>
                             )}
                         </Formik>

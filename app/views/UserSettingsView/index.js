@@ -7,6 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { UserApi } from '../../lib/api';
 import { Header } from "../../components";
 import styles from './styles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class UserSettingsComponent extends Component {
     constructor() {
@@ -163,32 +164,34 @@ export default class UserSettingsComponent extends Component {
                                         }}
                                         placeholderTextColor="white"
                                     />
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                        style={styles.text}  
-                                    >
-                                        <Text
-                                            onPress={handleSubmit} 
-                                            style={{color: "#ffffff"}}
+                                    <TouchableOpacity onPress={handleSubmit}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                            style={styles.text}  
                                         >
-                                            UPDATE USER
-                                        </Text>
-                                    </LinearGradient>
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                        style={styles.text}  
-                                    >
-                                        <Text
-                                            onPress={() => this.navigateToHome()}
-                                            style={{color: "#ffffff"}}
+                                            <Text
+                                                style={{color: "#ffffff"}}
+                                            >
+                                                UPDATE USER
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.navigateToHome()}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                            style={styles.text}  
                                         >
-                                            GO BACK
-                                        </Text>
-                                    </LinearGradient>
+                                            <Text
+                                                style={{color: "#ffffff"}}
+                                            >
+                                                GO BACK
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
                                 </Fragment>
                             )}
                         </Formik>

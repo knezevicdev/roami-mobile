@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Formik } from 'formik';
-import { Text, ImageBackground, Image, View, TextInput, Alert } from 'react-native';
+import { Text, ImageBackground, Image, View, TextInput, Alert, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-navigation";
 import { UserApi } from '../../lib/api';
 import styles from "./styles";
@@ -14,13 +14,14 @@ export default class ResetComponent extends Component {
     };
 
     forgotPasswordRequest = async (email) => {
+        if(this.state.resetRequested) return;
+        this.setState({
+            reseted: true,
+            resetRequested: true
+        });
         await UserApi.forgotPasswordRequest(email)
             .then((res) => {
                 if(res.status === 200) {
-                    this.setState({
-                        reseted: true,
-                        resetRequested: true
-                    });
                     setTimeout(() => {
                         this.props.navigation.navigate("Login");
                     }, 2000)
@@ -38,6 +39,7 @@ export default class ResetComponent extends Component {
     }
 
     toLogin = () => {
+        if(this.state.resetRequested) return;
         this.props.navigation.navigate("Login");
     }
 
@@ -81,32 +83,34 @@ export default class ResetComponent extends Component {
                                         autoCapitalize="none"
                                         style={styles.input}
                                     />
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                    >
-                                        <Text
-                                            style={{color: "#ffffff"}}
-                                            onPress={handleSubmit}
+                                    <TouchableOpacity onPress={handleSubmit}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                         >
-                                            {
-                                                this.state.resetRequested ? "RESET INSTRUCTION ARE COMMING" : "RESET"
-                                            }
-                                        </Text>
-                                    </LinearGradient>
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                                    >
-                                        <Text
-                                            style={{color: "#ffffff"}}
-                                            onPress={() => this.toLogin()}
+                                            <Text
+                                                style={{color: "#ffffff"}}
+                                            >
+                                                {
+                                                    this.state.resetRequested ? "RESET INSTRUCTION ARE COMMING" : "RESET"
+                                                }
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.toLogin()}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                         >
-                                            BACK TO LOGIN
-                                        </Text>
-                                    </LinearGradient>
+                                            <Text
+                                                style={{color: "#ffffff"}}
+                                            >
+                                                BACK TO LOGIN
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
                                 </Fragment>
                             )}
                         </Formik>

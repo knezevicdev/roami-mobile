@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Text, ImageBackground, Image, View, TextInput, Alert } from 'react-native';
+import { Text, ImageBackground, Image, View, TextInput, Alert, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-navigation";
 import { Formik } from 'formik';
 import LinearGradient from 'react-native-linear-gradient';
@@ -24,10 +24,10 @@ export default class ResetPasswordComponent extends Component {
 
     resetPassword = async (newPassword, repeatedNewPassword) => {
         try {
+            this.setState({
+                resetPasswordRequested: true
+            })
             await UserApi.resetPassword(this.state.token, newPassword, repeatedNewPassword).then(response => {
-                this.setState({
-                    resetPasswordRequested: true
-                })
                 storeAccessToken(response.data.token);
                 setTimeout(() => {
                     this.props.navigation.navigate("Home");
@@ -76,6 +76,8 @@ export default class ResetPasswordComponent extends Component {
                                         secureTextEntry={true}
                                         placeholderTextColor="white"
                                         style={styles.input}
+                                        onSubmitEditing={() => { this.passwordInput.focus(); }}
+                                        blurOnSubmit={false}
                                     />
                                     <TextInput
                                         value={values.password} 
@@ -84,21 +86,24 @@ export default class ResetPasswordComponent extends Component {
                                         secureTextEntry={true}
                                         placeholderTextColor="white"
                                         style={styles.input}
+                                        ref={(input) => { this.passwordInput = input; }}
+                                        onSubmitEditing={handleSubmit}
                                     />
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                                    >
-                                        <Text
-                                            style={{ color: colors.WHITE }}
-                                            onPress={handleSubmit}
+                                    <TouchableOpacity onPress={handleSubmit}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
+                                            style={styles.button}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
                                         >
-                                            {
-                                                this.state.resetPasswordRequested ? "LOADING" : "RESET PASSWORD"
-                                            }
-                                        </Text>
-                                    </LinearGradient>
+                                            <Text
+                                                style={{ color: colors.WHITE }}
+                                            >
+                                                {
+                                                    this.state.resetPasswordRequested ? "LOADING" : "RESET PASSWORD"
+                                                }
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
                                 </Fragment>
                             )}
                         </Formik>

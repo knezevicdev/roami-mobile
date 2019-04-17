@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { PermissionsAndroid, Platform, View, Text, Slider, Alert, StyleSheet } from "react-native";
+import { PermissionsAndroid, Platform, View, Text, Slider, Alert, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Formik } from 'formik';
 import { Header } from "../../components";
@@ -42,6 +42,7 @@ export default class MainComponent extends Component {
         loadedCoords: false,
         item_categorys: '',
         searchRequested: false,
+        searchSubmitted: false
     };
 
     async componentDidMount() {
@@ -108,6 +109,10 @@ export default class MainComponent extends Component {
     };
 
     search = async (itemCategoryId, priceRange, milesRange, latitude, longitude) => {
+        if(this.state.searchRequested) return;
+        this.setState({
+            searchRequested: true,
+        })
         try {
             await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
                 console.log('res1 ===>', res);
@@ -117,9 +122,7 @@ export default class MainComponent extends Component {
                     const latDelta = (milesRange * 1609.34) / oneDegreeOfLatitudeInMeters;
                     const lngDelta = (milesRange * 1609.34) / (oneDegreeOfLatitudeInMeters * Math.cos(latitude * (Math.PI / 180)));
                     
-                    this.setState({
-                        searchRequested: true,
-                    })
+                    
                     setTimeout(() => {
                         this.props.navigation.navigate("Map", { 
                             data: res.data, longitude, latitude, itemCategoryId, priceRange, milesRange, latDelta, lngDelta 
@@ -248,18 +251,19 @@ export default class MainComponent extends Component {
                                         onValueChange={this.handleSelectChange("milesRange", handleChange)}
                                         value={parseFloat(values.milesRange)}
                                     />
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                                    >
-                                        <Text
+                                    <TouchableOpacity onPress={handleSubmit}>
+                                        <LinearGradient
+                                            colors={['#FF8943', '#F74251']}
                                             style={styles.button}
-                                            onPress={handleSubmit}
+                                            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
                                         >
-                                            SEARCH
-                                        </Text>
-                                    </LinearGradient>
+                                            <Text
+                                                style={styles.button}
+                                            >
+                                                SEARCH
+                                            </Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>
                                 </Fragment>
                             )}
                         </Formik>

@@ -15,6 +15,7 @@ import {
 } from "react-native-fbsdk";
 import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
 import { api } from "../../config";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class LoginComponent extends Component {
     state = {
@@ -22,12 +23,14 @@ export default class LoginComponent extends Component {
     };
 
     login = async (email, password) => {
+        if(this.state.loginRequested) return;
         try {
+            this.setState({
+                loginRequested: true
+            })
             await UserApi.loginRequest(email, password).then(response => {
                 console.log('res', response.data);
-                this.setState({
-                    loginRequested: true
-                })
+                
                 storeAccessToken(response.data.token);
                 setTimeout(() => {
                     this.props.navigation.navigate("Home");
@@ -89,10 +92,12 @@ export default class LoginComponent extends Component {
   };
 
   registration = () => {
+    if(this.state.loginRequested) return;
     this.props.navigation.navigate("Register");
   };
 
   toReset = () => {
+    if(this.state.loginRequested) return;
     this.props.navigation.navigate("ForgotPassword");
   };
 
@@ -146,6 +151,9 @@ export default class LoginComponent extends Component {
                                         keyboardType="email-address"
                                         textContentType="emailAddress"
                                         autoCapitalize="none"
+                                        textContentType="email"
+                                        onSubmitEditing={() => { this.passwordInput.focus(); }}
+                                        blurOnSubmit={false}
                                     />
                                     <TextInput
                                         value={values.password} 
@@ -154,36 +162,41 @@ export default class LoginComponent extends Component {
                                         secureTextEntry={true}
                                         placeholderTextColor="white"
                                         style={styles.input}
+                                        textContentType="password"
+                                        ref={(input) => { this.passwordInput = input; }}
+                                        onSubmitEditing={() => this.registration()}
                                     />
-                                    <LinearGradient
-                                        colors={['#FF8943', '#F74251']}
-                                        style={styles.button}
-                                        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                                    >
-                                        <Text
-                                            style={{ color: colors.WHITE }}
-                                            onPress={handleSubmit}
-                                        >
-                                            {
-                                                this.state.loginRequested ? "LOADING" : "LOGIN"
-                                            }
-                                        </Text>
-                                    </LinearGradient>
+                                    <TouchableOpacity onPress={handleSubmit}>
+                                      <LinearGradient
+                                          colors={['#FF8943', '#F74251']}
+                                          style={styles.button}
+                                          start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                                      >
+                                          <Text
+                                              style={{ color: colors.WHITE }}
+                                          >
+                                              {
+                                                  this.state.loginRequested ? "LOADING" : "LOGIN"
+                                              }
+                                          </Text>
+                                      </LinearGradient>
+                                    </TouchableOpacity>
                                 </Fragment>
                             )}
                         </Formik>
-                        <LinearGradient
-                            colors={['#FF8943', '#F74251']}
-                            style={styles.button}
-                            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-                        >
-                            <Text
-                                onPress={() => this.registration()} 
-                                style={styles.buttonText}
-                            >
-                                REGISTER
-                            </Text>
-                        </LinearGradient>
+                        <TouchableOpacity onPress={() => this.registration()} >
+                          <LinearGradient
+                              colors={['#FF8943', '#F74251']}
+                              style={styles.button}
+                              start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                          >
+                              <Text
+                                  style={styles.buttonText}
+                              >
+                                  REGISTER
+                              </Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
                         <View style={styles.reset}>
                             <Text onPress={() => this.toReset()} style={styles.text}>Reset password</Text>
                         </View>
