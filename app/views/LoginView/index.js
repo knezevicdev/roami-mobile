@@ -151,7 +151,7 @@ export default class LoginComponent extends Component {
                                         keyboardType="email-address"
                                         textContentType="emailAddress"
                                         autoCapitalize="none"
-                                        textContentType="email"
+                                        textContentType="emailAddress"
                                         onSubmitEditing={() => { this.passwordInput.focus(); }}
                                         blurOnSubmit={false}
                                     />
