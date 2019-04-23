@@ -5,10 +5,11 @@ import AppNavigator, { outerScreens } from './lib/Navigation';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from './lib/store';
 import { NavigationActions } from 'react-navigation';
+import Geolocation from "react-native-geolocation-service";
 
 class App extends Component {
-
     componentDidMount() {
+        Geolocation.requestAuthorization();
         BackHandler.addEventListener('hardwareBackPress', () => {
             const { navigation } = store.getState();
             const route = navigation.routes[navigation.index];

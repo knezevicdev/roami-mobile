@@ -83,8 +83,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Scanning QR code for vehicel harvest.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>In order to find the nearest drinks and bars.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order to get the initial location to find drinks and bars.</string>
 	<key>UIAppFonts</key>
