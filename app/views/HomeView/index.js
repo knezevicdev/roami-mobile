@@ -210,7 +210,7 @@ export default class MainComponent extends Component {
                                         onValueChange={this.handleSelectChange('itemCategoryId', handleChange)}
                                         value={values.itemCategoryId}
                                     />
-                                    <Text style={{ paddingLeft: 30, marginTop: 20}}>Select price range</Text>
+                                    <Text style={{ paddingLeft: 30, marginTop: 20}}>Price Range</Text>
                                     <RNPickerSelect
                                         placeholder={{
                                             label: 'Select, or leave empty for any range',
