@@ -63,8 +63,8 @@ export default class MainComponent extends Component {
                     PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
                 ],
                 {
-                    title: "Give Location Permission",
-                    message: "App needs location permission to find your position."
+                    title: "Location Permission",
+                    message: "This app needs location permission to find bars around you."
                 }
             ).then(granted => {
                 console.log(granted);
@@ -132,14 +132,14 @@ export default class MainComponent extends Component {
                         });
                     }, 1000);
                 } else {
-                    Alert.alert("No match!");
+                    Alert.alert("Nothing found!", "We couldn't find anything! Please broaden your search and try again.");
                     this.setState({
                         searchRequested: false
                     });
                 }
             }));
         } catch(error) {
-            Alert.alert("Error while searching!");
+            Alert.alert("Error", "Error while performing the search!");
         }
     }
 
@@ -170,7 +170,7 @@ export default class MainComponent extends Component {
                     {
                         this.state.searchRequested ?
                             <View style={styles.loading}>
-                                <Text style={styles.loadingText}>LOADING...</Text>
+                                <Text style={styles.loadingText}>SEARCHING...</Text>
                             </View>
                         : null
                     }
@@ -193,10 +193,10 @@ export default class MainComponent extends Component {
                         >
                             {({ values, handleChange, handleSubmit }) => (
                                 <Fragment>
-                                    <Text style={{ paddingLeft: 30}}>Select category</Text>
+                                    <Text style={{ paddingLeft: 30}}>Beverage Type</Text>
                                     <RNPickerSelect
                                         placeholder={{
-                                            label: 'Select category...',
+                                            label: 'Select, or leave empty for all types',
                                             value: 0,
                                             color: '#9EA0A4',
                                         }}
@@ -213,41 +213,42 @@ export default class MainComponent extends Component {
                                     <Text style={{ paddingLeft: 30, marginTop: 20}}>Select price range</Text>
                                     <RNPickerSelect
                                         placeholder={{
-                                            label: 'Select price range...',
+                                            label: 'Select, or leave empty for any range',
                                             value: 0,
                                             color: '#9EA0A4',
                                         }}
                                         style={pickerSelectStyles}
                                         items={[
                                             {
-                                                label: "0$ - 5$",
+                                                label: "up to $5",
                                                 value: "0-5"
                                             },
                                             {
-                                                label: "5$ - 10$",
+                                                label: "$5 - $10",
                                                 value: "5-10"
                                             },
                                             {
-                                                label: "10$ - 15$",
+                                                label: "$10 - $15",
                                                 value: "10-15"
                                             },
                                             {
-                                                label: "15$ - 20$",
+                                                label: "$15 - $20",
                                                 value: "15-20"
                                             },
                                             {
-                                                label: "20$+",
+                                                label: "over $20",
                                                 value: "20+"
                                             },
                                         ]}
                                         onValueChange={this.handleSelectChange("priceRange", handleChange)}
                                         value={values.priceRange}
                                     />
-                                    <Text style={{ paddingLeft: 30, marginTop: 20}}>Miles range: {values.milesRange}</Text>
+                                    <Text style={{ paddingLeft: 30, marginTop: 20}}>Range: {values.milesRange} mile{values.milesRange>1?"s":null}</Text>
                                     <Slider
                                         style={styles.slide}
                                         step={1}
                                         maximumValue={50}
+                                        minimumValue={1}
                                         onValueChange={this.handleSelectChange("milesRange", handleChange)}
                                         value={parseFloat(values.milesRange)}
                                     />
