@@ -15,20 +15,41 @@ export default class RegisterComponent extends Component {
         registerRequested: false
     };
 
+    validateForm = (values) => {
+    let errors = {};
+
+    ["first_name", "last_name", "email", "password"].map(field => {
+        if (!values[field]) {
+            errors[field] = "This field is required.";
+        }        
+    });
+
+
+    if (values.email) {
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+            errors.email = 'Invalid e-mail address.';
+        }
+    }
+  
+    return errors;
+    }
+
     register = async (first_name, last_name, email, password) => {
-        this.setState({
-            registered: true,
+        this.setState({        
             registerRequested: true
         });
         await UserApi.registerRequest(first_name, last_name, email, password)
             .then((res) => {
                 if(res.status === 200) {
-                    Alert.alert("Successfully registered, please confirm your email address!");
+                    this.setState({
+                        registered: true,
+                    });
+                    Alert.alert("Success!", "Your registration was successful! Please check your email, and click the link in the message we just sent you. After you click the link, your account will be active.");
                     setTimeout(() => {
                         this.props.navigation.navigate("Login");
                     }, 1000)
                 } else {
-                    Alert.alert("Error while registration.");
+                    Alert.alert("Error", "There was an error while trying to create your account.\nPlease, try again later.\n\nWe're very sorry about the inconvenience!");
                     this.setState({
                         registered: false,
                         registerRequested: false
@@ -36,8 +57,11 @@ export default class RegisterComponent extends Component {
                 }
             })
             .catch((error) => {
-                Alert.alert("Error while registration.");
-                console.log(error)
+                Alert.alert("Error", "There was an error while trying to create your account.\nPlease, try again later.\n\nWe're very sorry about the inconvenience!");
+                this.setState({
+                    registered: false,
+                    registerRequested: false
+                })
             })
     }
 
@@ -66,9 +90,12 @@ export default class RegisterComponent extends Component {
                                 email: "",
                                 password: "",
                             }}
+                            validate={this.validateForm}
+                            validateOnChange={false}
+                            validateOnBlur={false}
                             onSubmit={values => this.register(values.first_name, values.last_name, values.email, values.password)}
                         >
-                            {({ values, handleChange, handleSubmit }) => (
+                            {({ values, handleChange, handleSubmit, errors }) => (
                                 <Fragment>
                                     {
                                         this.state.registered ? 
@@ -80,26 +107,28 @@ export default class RegisterComponent extends Component {
                                     <TextInput
                                         onChangeText={handleChange('first_name')}
                                         value={values.first_name}
-                                        placeholder="Enter first name"
+                                        placeholder="Your First Name"
                                         placeholderTextColor="white"
                                         style={styles.input}
                                         onSubmitEditing={() => { this.lastNameInput.focus(); }}
                                         blurOnSubmit={false}
                                     />
+                                    {errors.first_name && <Text style={styles.errorMessage}>{errors.first_name}</Text>}
                                     <TextInput
                                         onChangeText={handleChange('last_name')}
                                         value={values.last_name}
-                                        placeholder="Enter last name"
+                                        placeholder="Your Last Name"
                                         placeholderTextColor="white"
                                         style={styles.input}
                                         ref={(input) => { this.lastNameInput = input; }}
                                         onSubmitEditing={() => { this.emailInput.focus(); }}
                                         blurOnSubmit={false}
                                     />
+                                    {errors.last_name && <Text style={styles.errorMessage}>{errors.last_name}</Text>}
                                     <TextInput
                                         onChangeText={handleChange('email')}
                                         value={values.email}
-                                        placeholder="Enter email"
+                                        placeholder="Your E-mail"
                                         placeholderTextColor="white"
                                         autoComplete="email"
                                         keyboardType="email-address"
@@ -110,16 +139,18 @@ export default class RegisterComponent extends Component {
                                         onSubmitEditing={() => { this.passwordInput.focus(); }}
                                         blurOnSubmit={false}
                                     />
+                                    {errors.email && <Text style={styles.errorMessage}>{errors.email}</Text>}
                                     <TextInput
                                         onChangeText={handleChange('password')}
                                         value={values.password}
-                                        placeholder="Enter password"
+                                        placeholder="Choose a Password"
                                         placeholderTextColor="white"
                                         style={styles.input}
                                         secureTextEntry={true}
                                         ref={(input) => { this.passwordInput = input; }}
                                         onSubmitEditing={handleSubmit}
                                     />
+                                    {errors.password && <Text style={styles.errorMessage}>{errors.password}</Text>}
                                     <TouchableOpacity onPress={handleSubmit}>
                                         <LinearGradient
                                             colors={['#FF8943', '#F74251']}

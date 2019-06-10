@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../config";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 export default StyleSheet.create({
     container: {
@@ -36,6 +37,12 @@ export default StyleSheet.create({
         marginHorizontal: 30,
         marginBottom: 5,
         paddingLeft: 20,
-        color: "#ffffff"
+        color: colors.WHITE,
     },
+    errorMessage: {
+        color: colors.WHITE,
+        backgroundColor: "red",
+        fontWeight: "bold",
+        padding: 10
+    }
 });

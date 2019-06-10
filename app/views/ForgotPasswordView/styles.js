@@ -38,4 +38,10 @@ export default StyleSheet.create({
         paddingLeft: 20,
         color: "#ffffff"
     },
+    errorMessage: {
+        color: colors.WHITE,
+        backgroundColor: "red",
+        fontWeight: "bold",
+        padding: 10
+    },
 });
