@@ -23,14 +23,16 @@ export default class LoginComponent extends Component {
     };
 
     login = async (email, password) => {
+      if (email.trim()===""||password.trim()==="") {
+        Alert.alert("Cannot log in", "Please enter your username and your password.\n\nIf you don't have an account yet, please click Register.");
+        return;
+      }
         if(this.state.loginRequested) return;
         try {
             this.setState({
                 loginRequested: true
             })
             await UserApi.loginRequest(email, password).then(response => {
-                console.log('res', response.data);
-                
                 storeAccessToken(response.data.token);
                 setTimeout(() => {
                     this.props.navigation.navigate("Home");
@@ -40,7 +42,6 @@ export default class LoginComponent extends Component {
                     loginRequested: false
                 });
                 Alert.alert(error.response.data.message);
-                console.log(error.response.data.message);
             });
         } catch (error) {
             this.setState({
@@ -148,10 +149,9 @@ export default class LoginComponent extends Component {
                                         placeholderTextColor="white"
                                         style={styles.input}
                                         autoComplete="email"
-                                        keyboardType="email-address"
-                                        textContentType="emailAddress"
+                                        keyboardType="email-address"                                        
                                         autoCapitalize="none"
-                                        textContentType="emailAddress"
+                                        textContentType="username"
                                         onSubmitEditing={() => { this.passwordInput.focus(); }}
                                         blurOnSubmit={false}
                                     />
@@ -164,7 +164,7 @@ export default class LoginComponent extends Component {
                                         style={styles.input}
                                         textContentType="password"
                                         ref={(input) => { this.passwordInput = input; }}
-                                        onSubmitEditing={() => this.registration()}
+                                        onSubmitEditing={handleSubmit}
                                     />
                                     <TouchableOpacity onPress={handleSubmit}>
                                       <LinearGradient
@@ -176,7 +176,7 @@ export default class LoginComponent extends Component {
                                               style={{ color: colors.WHITE }}
                                           >
                                               {
-                                                  this.state.loginRequested ? "LOADING" : "LOGIN"
+                                                  this.state.loginRequested ? "LOGGING IN..." : "LOGIN"
                                               }
                                           </Text>
                                       </LinearGradient>
