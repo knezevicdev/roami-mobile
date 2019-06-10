@@ -13,15 +13,26 @@ export default class ResetComponent extends Component {
         resetRequested: false
     };
 
+    validateForm = (values) => {
+        let errors = {};
+        if (!values.email) { 
+            errors.email = 'Please enter your e-mail address.';
+        }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid e-mail address.';
+        }   
+        return errors;
+    }
+
     forgotPasswordRequest = async (email) => {
         if(this.state.resetRequested) return;
-        this.setState({
-            reseted: true,
+        this.setState({            
             resetRequested: true
         });
         await UserApi.forgotPasswordRequest(email)
             .then((res) => {
                 if(res.status === 200) {
+                    this.setState({reseted: true});
                     setTimeout(() => {
                         this.props.navigation.navigate("Login");
                     }, 2000)
@@ -34,7 +45,10 @@ export default class ResetComponent extends Component {
             })
             .catch((error) => {
                 Alert.alert(error.response.data.message);
-                console.log(error);
+                this.setState({
+                    reseted: false,
+                    resetRequested: false
+                });
             })
     }
 
@@ -62,8 +76,12 @@ export default class ResetComponent extends Component {
                                 email: ''
                             }}
                             onSubmit={values => this.forgotPasswordRequest(values.email)}
+                            validateOnBlur={false}
+                            validateOnChange={false}
+                            validate={this.validateForm}
+
                         >
-                            {({ values, handleChange, handleSubmit }) => (
+                            {({ values, handleChange, handleSubmit, errors }) => (
                                 <Fragment>
                                     {
                                         this.state.reseted ? 
@@ -75,7 +93,7 @@ export default class ResetComponent extends Component {
                                     <TextInput
                                         onChangeText={handleChange('email')}
                                         value={values.email}
-                                        placeholder="Enter email"
+                                        placeholder="Your E-mail"
                                         placeholderTextColor="white"
                                         autoComplete="email"
                                         keyboardType="email-address"
@@ -83,6 +101,9 @@ export default class ResetComponent extends Component {
                                         autoCapitalize="none"
                                         style={styles.input}
                                     />
+
+                                    {errors.email && <Text style={styles.errorMessage}>{errors.email}</Text>}
+
                                     <TouchableOpacity onPress={handleSubmit}>
                                         <LinearGradient
                                             colors={['#FF8943', '#F74251']}
@@ -93,7 +114,7 @@ export default class ResetComponent extends Component {
                                                 style={{color: "#ffffff"}}
                                             >
                                                 {
-                                                    this.state.resetRequested ? "RESET INSTRUCTION ARE COMMING" : "RESET"
+                                                    this.state.resetRequested ? "PLEASE CHECK YOUR INBOX" : "RESET"
                                                 }
                                             </Text>
                                         </LinearGradient>
