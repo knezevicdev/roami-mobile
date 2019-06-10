@@ -22,8 +22,14 @@ export default class LoginComponent extends Component {
         loginRequested: false
     };
 
+    validForm = (values) => {
+      return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(values.email) && values.password.length > 2;
+    }
+
     login = async (email, password) => {
-        if(this.state.loginRequested) return;
+        if(this.state.loginRequested || !this.validForm({
+          email, password
+        })) return;
         try {
             this.setState({
                 loginRequested: true
@@ -125,6 +131,13 @@ export default class LoginComponent extends Component {
                     style={styles.container}
                     source={require('../../../assets/images/background/backgroundImage.png')}
                 >
+                  {
+                    this.state.loginRequested ?
+                        <View style={styles.loading}>
+                            <Text style={styles.loadingText}>LOADING...</Text>
+                        </View>
+                    : null
+                  }
                     <View style={styles.logoContainer}>
                         <Image 
                             style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
@@ -164,9 +177,9 @@ export default class LoginComponent extends Component {
                                         style={styles.input}
                                         textContentType="password"
                                         ref={(input) => { this.passwordInput = input; }}
-                                        onSubmitEditing={() => this.registration()}
+                                        onSubmitEditing={handleSubmit}
                                     />
-                                    <TouchableOpacity onPress={handleSubmit}>
+                                    <TouchableOpacity onPress={handleSubmit} disabled={!this.validForm(values)}>
                                       <LinearGradient
                                           colors={['#FF8943', '#F74251']}
                                           style={styles.button}
@@ -175,9 +188,7 @@ export default class LoginComponent extends Component {
                                           <Text
                                               style={{ color: colors.WHITE }}
                                           >
-                                              {
-                                                  this.state.loginRequested ? "LOADING" : "LOGIN"
-                                              }
+                                              LOGIN
                                           </Text>
                                       </LinearGradient>
                                     </TouchableOpacity>
