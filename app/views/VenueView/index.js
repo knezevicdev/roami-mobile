@@ -26,6 +26,23 @@ export default class VenueComponent extends Component {
         this.props.navigation.goBack();
     }
 
+    formatTime(time) {
+        if (time.length < 5 || time.length > 8) return time;
+        let h, m, a;
+        let segments = time.split(":");
+        if (segments.length===3) {
+            h = parseInt(segments[0]);
+            m = segments[1].padStart(2, "0");
+            a = "AM";
+            if (h>12) {
+                h-=12;
+                a = "PM"
+            } 
+            return `${h}:${m.padStart(2, "0")} ${a}`;
+        }
+        return time;
+    }
+
     async componentDidMount() {
         const id = this.props.navigation.state.params.id;
 
@@ -95,7 +112,7 @@ export default class VenueComponent extends Component {
                                     style={this.state.itemActive ? styles.navItemActive : styles.navItem} 
                                     onPress={() => this.setState({ infoActive: false, itemActive: true })}
                                 >
-                                    ITEMS
+                                    MENU
                                 </Text>
                             </View>
                         </LinearGradient>
@@ -112,7 +129,7 @@ export default class VenueComponent extends Component {
                                 {
                                     this.state.venue.workingPeriods && this.state.venue.workingPeriods.length ?
                                     <View>
-                                        <Text style={styles.infoTitle}>Working period:</Text>
+                                        <Text style={styles.infoTitle}>Business Hours:</Text>
                                         {
                                             (this.state.venue.workingPeriods || []).map(period => {
                                                 if(period.day === 0) {
@@ -133,8 +150,8 @@ export default class VenueComponent extends Component {
                                                 return(
                                                     <View key={period.id}>
                                                         <Text>{period.day}</Text>
-                                                        <Text style={{ fontSize: 16}}>Open {period.open}</Text>
-                                                        <Text style={{ fontSize: 16}}>Close {period.close}</Text>
+                                                        <Text style={{ fontSize: 16}}>Open {this.formatTime(period.open)}</Text>
+                                                        <Text style={{ fontSize: 16}}>Close {this.formatTime(period.close)}</Text>
                                                     </View>
                                                 )
                                             })
@@ -245,7 +262,7 @@ export default class VenueComponent extends Component {
                                 (this.state.venue.items || []).map((item) => 
                                     <View key={item.id} style={styles.item} >
                                         <Text>{item.name}</Text>
-                                        <Text>{item.itemVenues.price / 100} $</Text>
+                                        <Text>${(item.itemVenues.price / 100).toFixed(2)}</Text>
                                     </View>
                                 )
                             }
