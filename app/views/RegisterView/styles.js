@@ -44,5 +44,23 @@ export default StyleSheet.create({
         backgroundColor: "red",
         fontWeight: "bold",
         padding: 10
+    },
+    loading: {
+        flex: 1,
+        backgroundColor: colors.BUTTON_TRANSPARENT_COLOR,
+        width: '100%',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 1000,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    loadingText: {
+        color: '#fff',
+        position: 'absolute',
+        fontSize: 20
     }
 });

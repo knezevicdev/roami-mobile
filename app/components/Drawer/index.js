@@ -12,8 +12,8 @@ import { LoginManager } from 'react-native-fbsdk'
 
 export default class DrawerComponent extends Component {
     logout = async () => {
-        await GoogleSignin.revokeAccess();
-        await LoginManager.logOut();
+        GoogleSignin.revokeAccess();
+        LoginManager.logOut();
 
         removeAccessToken().then(
             this.props.navigation.navigate('Login')

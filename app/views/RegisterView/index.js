@@ -76,6 +76,13 @@ export default class RegisterComponent extends Component {
                         style={styles.container}
                         source={require('../../../assets/images/background/backgroundImage.png')}
                     >
+                    {
+                        this.state.registerRequested ?
+                            <View style={styles.loading}>
+                                <Text style={styles.loadingText}>LOADING...</Text>
+                            </View>
+                        : null
+                    }
                     <View style={styles.logoContainer}>
                         <Image 
                             style={{ width: '30%', backgroundColor: 'transparent' }} resizeMode={'contain'}
@@ -161,9 +168,7 @@ export default class RegisterComponent extends Component {
                                                 containerStyles={styles.button}
                                                 style={{ color: colors.WHITE }}
                                             >
-                                                {
-                                                    this.state.registerRequested ? "REGISTERING" : "REGISTER"
-                                                }
+                                                REGISTER
                                             </Text>
                                         </LinearGradient>
                                     </TouchableOpacity>

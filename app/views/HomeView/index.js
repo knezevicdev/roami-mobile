@@ -116,9 +116,11 @@ export default class MainComponent extends Component {
         try {
             await VenueApi.venueSearchRequest(milesRange, latitude, longitude, itemCategoryId, priceRange).then(((res) => {
                 console.log('res1 ===>', res);
+
+                
                 if(res.data && res.data.length > 0) {
                     const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
-
+    
                     const latDelta = (milesRange * 1609.34) / oneDegreeOfLatitudeInMeters;
                     const lngDelta = (milesRange * 1609.34) / (oneDegreeOfLatitudeInMeters * Math.cos(latitude * (Math.PI / 180)));
                     

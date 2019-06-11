@@ -17,7 +17,8 @@ export default class UserSettingsComponent extends Component {
             email: "",
             first_name: "",
             last_name: "",
-            userUpdateRequest: false
+            userUpdateRequest: false,
+            dataLoaded: false
         };
     }
 
@@ -58,7 +59,8 @@ export default class UserSettingsComponent extends Component {
             this.setState({
                 email: response.data.email,
                 first_name: response.data.first_name,
-                last_name: response.data.last_name
+                last_name: response.data.last_name,
+                dataLoaded: true
             })
             this.setState({ user: response.data });
         }).catch(error => {
@@ -81,11 +83,11 @@ export default class UserSettingsComponent extends Component {
                 {
                     !this.state.user ? <View></View>:
                     <View style={{ marginTop: 40}}>
-                        <Formik
+                        {this.state.dataLoaded && <Formik
                             initialValues={{
-                                email: "",
-                                first_name: "",
-                                last_name: "",
+                                email: this.state.email,
+                                first_name: this.state.first_name,
+                                last_name: this.state.last_name,
                                 password: "",
                                 newPassword: "",
                                 repeatedNewPassword: ""
@@ -107,6 +109,10 @@ export default class UserSettingsComponent extends Component {
                                         placeholderTextColor="black"
                                         style={styles.input}
                                         placeholderTextColor="white"
+                                        editable={true}
+                                        selectTextOnFocus={false} 
+                                        contextMenuHidden={true}
+                                        pointerEvents="none"
                                     />
                                     <Text style={{ paddingLeft: 30, marginTop: 5 }}>First name</Text>
                                     <TextInput
@@ -194,7 +200,7 @@ export default class UserSettingsComponent extends Component {
                                     </TouchableOpacity>
                                 </Fragment>
                             )}
-                        </Formik>
+                        </Formik>}
                     </View>
                 }
             </SafeAreaView>

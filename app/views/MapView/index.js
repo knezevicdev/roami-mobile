@@ -8,6 +8,8 @@ import LinearGradient from "react-native-linear-gradient";
 import RNPickerSelect from 'react-native-picker-select';
 import styles from "./styles";
 import { VenueApi } from '../../lib/api';
+import { TouchableOpacity } from "react-native-gesture-handler";
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
@@ -106,7 +108,8 @@ class MapComponent extends React.Component {
             } else {
                 Alert.alert("No match!");
                 this.setState({
-                    searchRequested: false
+                    searchRequested: false,
+                    searchLoading: false
                 });
             }
         })); 
@@ -148,6 +151,30 @@ class MapComponent extends React.Component {
                     <Text onPress={() => this.handleMenuOpen()} style={{ color: 'white' }} >
                         {itemCategoryId == '0' ? 'No category' : itemCategoryId} - {priceRange == '0' ? 'No price range' : ` ${priceRange}$`} - {` ${milesRange} miles`}
                     </Text>
+                </View>
+                <View style={{
+                    position: "absolute",
+                    flex: 1,
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                    flexDirection: "column",
+                    width: "100%",
+                    height: "100%",
+                    paddingRight: 10,
+                    paddingBottom: 15                    
+                }} pointerEvents="box-none">
+                    <TouchableOpacity style={{
+                        backgroundColor: "white",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: 40,
+                        marginBottom: 5,
+                        width: 50,
+                        height: 50                  
+                    }} onPress={() => this.props.navigation.navigate('Home')}>
+                        <MaterialIcon name={'arrow-back'} size={40} color={"#000"} />
+                    </TouchableOpacity>
                 </View>
                 {
                     this.state.searchLoading ?
